@@ -1,0 +1,93 @@
+<template>
+	<div class="vc-chat-list">
+		<div class="chat-item" v-for="item in list" :class="{' brd-bottom': $index < list.length-1}">
+			<a href="javascript:;">
+				<div class="item-hd" :class="{' chat-badge': item.newMsg}">
+					<img :src="item.avatar" class="chat-avatar">
+					<span class="item-badge" :class="{' item-badge-dot': !item.msgCount}" v-if="item.newMsg">{{item.msgCount}}</span>
+				</div>
+				<div class="item-bd">
+					<div class="item-title">{{item.name}}</div>
+					<div class="item-txt">{{item.latestWord}}</div>
+				</div>
+				<div class="item-ft">{{item.latestTime}}</div>
+			</a>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	props: ["initialList"],
+	data () {
+		return {
+			list: this.initialList,
+			test: this.initialList[0]
+		}
+	}
+}
+</script>
+
+<style lang="stylus">
+@import '../assets/css/com/value.styl'
+$innerHeight = 48px
+
+.vc-chat-list
+	.brd-bottom:after
+		left: 10px
+	.chat-item
+		padding: 8px $gap
+		background: #fff
+		a
+			display: flex
+	.item-hd
+		display: inline-block
+		padding-right: 10px
+	.item-bd
+		flex: 1
+	.item-ft
+		font-size: 12px
+		color: #b2b2b2
+		padding-left: $gap
+		line-height: ($innerHeight / 2) + 2
+	.chat-avatar
+		display: inline-block
+		width: $innerHeight
+		height: @width
+		border-radius: 5px
+	.item-title
+		font-size: 15px
+		color: #000
+		// height: 26px
+		height: ($innerHeight / 2) + 2
+		line-height: @height
+	.item-txt
+		font-size: 13px
+		color: #9c9c9c
+		height: ($innerHeight / 2) - 2
+		line-height: @height
+	.chat-badge
+		position: relative
+	.item-badge
+		display: inline-block
+		padding: .15em .4em
+		min-width: 8px
+		border-radius: 18px
+		background-color: #F43530
+		color: #FFFFFF
+		line-height: 1.2
+		text-align: center
+		font-size: 12px
+		vertical-align: middle
+		// 写死的定位
+		position: absolute
+		top: -6px
+		right: 6px
+	.item-badge-dot
+		padding: .4em
+		min-width: 0
+		// 写死的定位
+		position: absolute
+		top: -3px
+		right: 6px
+</style>

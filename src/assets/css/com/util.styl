@@ -1,0 +1,154 @@
+@import "./mixin.styl"
+/* Location */
+.m-center {
+    margin: 0 auto;
+}
+.t-center {
+    text-align: center;
+}
+.p-relative {
+    position: relative;
+}
+.p-absolute {
+    position: absolute;
+}
+.tips-open {
+    opacity: 1;
+    transition: initial;
+}
+.tips-close {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity .2s ease, transform .4s ease
+}
+/* Font */
+// size
+.f12 {
+    font-size: 12px;
+}
+.f14 {
+    font-size: 14px;
+}
+.f16 {
+    font-size: 16px;
+}
+.f18 {
+    font-size: 18px;
+}
+.f19 {
+    font-size: 19px;
+}
+.f23 {
+    font-size: 23px;
+}
+.f24 {
+    font-size: 24px;
+}
+// color
+
+// input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+//     color:    #666;
+// }
+// input:-moz-placeholder, textarea:-moz-placeholder { 
+//     color:    #666;
+// }
+// input::-moz-placeholder, textarea::-moz-placeholder { 
+//     color:    #666;
+// }
+// input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+//     color:    #666;
+// }
+
+// border
+.brd-top {
+	position: relative;
+	&:before {
+		content: " ";
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		height: 1px;
+		border-top: 1px solid #dfdfdd;
+		color: #dfdfdd;
+		trans-origin(0 0);
+		trans-scaleY(0.5);
+	}
+}
+.brd-bottom {
+	position: relative;
+	&:after {
+		content: " ";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		height: 1px;
+		border-bottom: 1px solid #dfdfdd;
+		color: #dfdfdd;
+		trans-origin(0 100%);
+		trans-scaleY(0.5);
+	}
+}
+/* Icon */
+.item-icon-friendcircle {
+	background: transparent url(/static/images/icons.png) no-repeat 0px center
+}
+.item-icon-scan {
+	background: transparent url(/static/images/icons.png) no-repeat -30px center
+}
+.item-icon-shake {
+	background: transparent url(/static/images/icons.png) no-repeat -60px center
+}
+.item-icon-buy {
+	background: transparent url(/static/images/icons.png) no-repeat -88px center
+}
+.item-icon-game {
+	background: transparent url(/static/images/icons.png) no-repeat -117px center
+}
+.item-icon-program {
+	background: transparent url(/static/images/icons.png) no-repeat -147px center
+}
+.item-icon-newfriend {
+	background: #fb9d3b url(/static/images/icons.png) no-repeat -177px center
+}
+.item-icon-group {
+	background: #1aac18 url(/static/images/icons.png) no-repeat -221px center
+}
+.item-icon-tag {
+	background: #2982d8 url(/static/images/icons.png) no-repeat -265px center
+}
+.item-icon-public {
+	background: #2982d8 url(/static/images/icons.png) no-repeat -309px center
+}
+
+// .item-icon-friendcircle {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat 0px center
+// }
+// .item-icon-scan {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -30px center
+// }
+// .item-icon-shake {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -60px center
+// }
+// .item-icon-buy {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -88px center
+// }
+// .item-icon-game {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -117px center
+// }
+// .item-icon-program {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -147px center
+// }
+// .item-icon-newfriend {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -177px center
+// }
+// .item-icon-group {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -221px center
+// }
+// .item-icon-tag {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -265px center
+// }
+// .item-icon-public {
+// 	background: transparent url(/static/images/icons@x3.png) no-repeat -309px center
+// }

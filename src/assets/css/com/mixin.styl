@@ -1,0 +1,29 @@
+z_index(mode)
+	if mode == 'c'
+		z-index: 1
+	else if mode == 'n'
+		z-index: 110
+	else if mode == 'm'
+		z-index: 1000
+	else if mode == 'p'
+		z-index: 1010
+	else
+		z-index: mode
+
+trans-scaleY(s)
+	-webkit-transform: scaleY(s)
+	transform: scaleY(s)
+
+trans-origin(exp)
+	-webkit-transform-origin: exp
+	transform-origin: exp
+
+// placeholder-color(clr)
+// 	&::-webkit-input-placeholder
+// 		color: clr
+// 	&:-moz-placeholder
+// 		color: clr
+// 	&::-moz-placeholder
+// 		color: clr
+// 	&:-ms-input-placeholder
+// 		color: clr
