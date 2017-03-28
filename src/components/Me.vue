@@ -1,22 +1,36 @@
 <template>
-    <div class="effect list" style="padding-top: 21px">
-    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
-    </div>
+	<div class="effect user list">
+		<chat-list :initial-type="type" :initial-list="user"></chat-list>
+	</div>
+	<div class="effect list" >
+		<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+	</div>
 </template>
 
 <script>
+import ChatList from './ChatList'
 import AlphaList from './AlphaList'
 export default {
 
-    components: {
-        AlphaList
-    },
+	components: {
+		ChatList,
+		AlphaList
+	},
 
-    data () {
-    	return {
-    		func: {
-	    		listType: '0-1-2-3',
-	    		list: [
+	data () {
+		return {
+			type: 'user',
+			user: [
+				{
+					name: 'Andre爱喝抹茶拿铁',
+					avatar: '/static/images/chat/avatar-red.jpg',
+					chatID: 'A_Dreamliker',
+					avatarRight: false
+				}
+			],
+			func: {
+				listType: '0-1-2-3',
+				list: [
 					{
 						title: '相册',
 						icon: ' item-icon-friendcircle',
@@ -60,9 +74,14 @@ export default {
 						hrefTo: '/me?page=program',
 						category: '3'
 					}
-	    		]
-    		}
-    	}
-    }
+				]
+			}
+		}
+	}
 }
 </script>
+
+<style lang="stylus">
+.user
+	padding-bottom: 24px
+</style>

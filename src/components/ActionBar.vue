@@ -17,19 +17,16 @@
                 <p class="nav-links_label" v-text="a.label"></p>
             </li>
         </ul>
+        <div class="action-bar_mask" v-show="showList" @click="toggleList"></div>
     </div>
 </template>
 
 <script>
 export default {
     ready () {
-        console.dir(toString.call(this.$el))
-        document.addEventListener('click', (e) => {
-            if( !this.$el.contains(e.target) )  this.showList = false
-        })
-        document.addEventListener('touchend', (e) => {
-            if( !this.$el.contains(e.target) )  this.showList = false
-        })
+        window.addEventListener("click", function(event){
+            console.log(event.target);
+        });
     },
     data () {
         return {
@@ -118,4 +115,18 @@ export default {
         width: 16px
         margin-right: 10px
         text-align: center
+    .action-bar_mask
+        position: absolute
+        width: 6.4rem
+        height: 11.38rem
+        right: -21px
+        top: 44px
+        z-index: 109
+.tips-open
+    opacity: 1
+    transition: initial
+.tips-close
+    opacity: 0
+    transform: scale(0)
+    transition: opacity .2s ease, transform .4s ease
 </style>

@@ -1,6 +1,6 @@
 <template>
     <search-bar></search-bar>
-    <div class="effect chat-list">
+    <div class="effect list chat-list">
         <chat-list :initial-list="friends"></chat-list>
     </div>
 </template>
@@ -15,7 +15,7 @@ export default {
             friends: [
                 {
                     name: 'Uzumaki Naruto',
-                    avatar: '/static/images/chat/avatar-yellow.jpg',
+                    avatar: './static/images/chat/avatar-yellow.jpg',
                     latestWord: '笔直向前，说到做到',
                     latestTime: '17:29',
                     newMsg: true,
@@ -23,7 +23,7 @@ export default {
                 },
                 {
                     name: 'Sakuragi Hanamichi',
-                    avatar: '/static/images/chat/avatar-red.jpg',
+                    avatar: './static/images/chat/avatar-red.jpg',
                     latestWord: '我果然是个天才',
                     latestTime: '13:49',
                     newMsg: true,

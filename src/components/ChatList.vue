@@ -1,26 +1,43 @@
 <template>
 	<div class="vc-chat-list">
-		<div class="chat-item" v-for="item in list" :class="{' brd-bottom': $index < list.length-1}">
-			<a href="javascript:;">
-				<div class="item-hd" :class="{' chat-badge': item.newMsg}">
-					<img :src="item.avatar" class="chat-avatar">
-					<span class="item-badge" :class="{' item-badge-dot': !item.msgCount}" v-if="item.newMsg">{{item.msgCount}}</span>
-				</div>
-				<div class="item-bd">
-					<div class="item-title">{{item.name}}</div>
-					<div class="item-txt">{{item.latestWord}}</div>
-				</div>
-				<div class="item-ft">{{item.latestTime}}</div>
-			</a>
-		</div>
+		<template v-if="isUser">
+			<div class="chat-item user-item item-arrow">
+				<a href="javascript:;">
+					<div class="item-hd">
+						<img :src="list[0].avatar" class="chat-avatar" v-if="!list[0].avatarRight">
+					</div>
+					<div class="item-bd">
+						<div class="item-title">{{list[0].name}}</div>
+						<div class="item-txt">微信号:&nbsp;{{list[0].chatID}}</div>
+					</div>
+					<div class="item-ft"></div>
+				</a>
+			</div>
+		</template>
+		<template v-else>
+			<div class="chat-item" v-for="item in list" :class="{' brd-bottom': $index < list.length-1}">
+				<a href="javascript:;">
+					<div class="item-hd" :class="{' chat-badge': item.newMsg}">
+						<img :src="item.avatar" class="chat-avatar">
+						<span class="item-badge" :class="{' item-badge-dot': !item.msgCount}" v-if="item.newMsg">{{item.msgCount}}</span>
+					</div>
+					<div class="item-bd">
+						<div class="item-title">{{item.name}}</div>
+						<div class="item-txt">{{item.latestWord}}</div>
+					</div>
+					<div class="item-ft">{{item.latestTime}}</div>
+				</a>
+			</div>
+		</template>
 	</div>
 </template>
 
 <script>
 export default {
-	props: ["initialList"],
+	props: ['initialType', "initialList"],
 	data () {
 		return {
+			isUser: this.initialType ? this.initialType : false,
 			list: this.initialList,
 			test: this.initialList[0]
 		}
@@ -31,6 +48,7 @@ export default {
 <style lang="stylus">
 @import '../assets/css/com/value.styl'
 $innerHeight = 48px
+$userHeight = 60px
 
 .vc-chat-list
 	.brd-bottom:after
@@ -45,6 +63,7 @@ $innerHeight = 48px
 		padding-right: 10px
 	.item-bd
 		flex: 1
+		overflow: hidden
 	.item-ft
 		font-size: 12px
 		color: #b2b2b2
@@ -66,6 +85,9 @@ $innerHeight = 48px
 		color: #9c9c9c
 		height: ($innerHeight / 2) - 2
 		line-height: @height
+		overflow: hidden
+		text-overflow: ellipsis
+		white-space: nowrap
 	.chat-badge
 		position: relative
 	.item-badge
@@ -90,4 +112,38 @@ $innerHeight = 48px
 		position: absolute
 		top: -3px
 		right: 6px
+	.item-arrow
+		.item-ft
+			position: relative
+			padding-right: 25px
+			&:after
+				content: ' '
+				position: absolute
+				top: 50%
+				right: 8px
+				display: inline-block
+				width: 8px
+				height: 8px
+				border-width: 2px 2px 0 0
+				border-color: #C8C8CD
+				border-style: solid
+				margin-top: -4px
+				background: transparent
+				transform: rotateZ(45deg)
+	.user-item
+		.chat-avatar
+			width: $userHeight
+			height: @width
+			line-height: @height
+			border-radius: 0
+		.item-title
+			height: ($userHeight / 2) + 2
+			line-height: @height
+		.item-txt
+			color: #000
+			height: ($userHeight / 2) - 2
+			line-height: @height
+			overflow: hidden
+			text-overflow: ellipsis
+			white-space: nowrap
 </style>

@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style src="./assets/css/reset.css"></style>
-<style src="./assets/css/common.css"></style>
+<!-- <style src="./assets/css/common.css"></style> -->
 <style src="./assets/css/lib/font-awesome-4.7.0/css/font-awesome.min.css"></style>
 <style lang="stylus">
 @import "./assets/css/com/*"
@@ -144,11 +144,14 @@ body {
     z_index(2);
 }
 .page {
+    width: 100%;
     height: 100%;
     z_index('c');
-    overflow-x: hidden;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+.wrapper {
+    width: 100%
 }
 .header-sub ~ .page {
     padding-top: $header-h + $headersub-h;
@@ -168,5 +171,8 @@ body {
 .effect {
     opacity: 1;
     transition: all .3s ease;
+}
+.list:first-child {
+    padding-top: 15px;
 }
 </style>

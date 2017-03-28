@@ -113,9 +113,10 @@ function sortObj(obj) {
 </script>
 
 <style lang="stylus">
-@import "../assets/css/com/*"
+@import "../assets/css/com/mixin.styl"
+@import "../assets/css/com/value.styl"
 $avatarHeight = 34px
-$iconHeight = 21px
+$iconHeight = 24px
 .alpha-list
 	.group-notag ~ .group-notag
 		margin-top: $iconHeight 
@@ -158,18 +159,21 @@ $iconHeight = 21px
 	.item-ft
 		padding-left: $gap
 		color: #b2b2b2
+		text-align: right
+		span
+			line-height: $iconHeight
 	.item-title
 		font-size: 15px
 		color: #000
 	.alpha-item-arrow
 		.item-ft
 			position: relative
-			padding-right: 15px
+			padding-right: 25px
 			&:after
 				content: ' '
 				position: absolute
 				top: 50%
-				right: 2px
+				right: 8px
 				display: inline-block
 				width: 8px
 				height: 8px
