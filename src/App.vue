@@ -175,4 +175,12 @@ body {
 .list:first-child {
     padding-top: 15px;
 }
+.item-icon {
+    // dev
+    background-image: url(/static/images/icons.png)
+    // prod
+    // background-image: url(/vue-chat/static/images/icons.png)
+    background-repeat: no-repeat
+    background-color: transparent
+}
 </style>

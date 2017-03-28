@@ -23,7 +23,7 @@ export default {
 			user: [
 				{
 					name: 'Andre爱喝抹茶拿铁',
-					avatar: '/static/images/chat/avatar-red.jpg',
+					avatar: './static/images/chat/avatar-red.jpg',
 					chatID: 'A_Dreamliker',
 					avatarRight: false
 				}

@@ -58,70 +58,70 @@ export default {
 					{
 						title: 'Uzumaki Naruto',
 						icon: '',
-						avatar: '/static/images/chat/avatar-yellow.jpg',
+						avatar: './static/images/chat/avatar-yellow.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'U'
 					},{
 						title: 'Uchiha Itachi',
 						icon: '',
-						avatar: '/static/images/chat/avatar-blue.jpg',
+						avatar: './static/images/chat/avatar-blue.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'U'
 					},{
 						title: 'Dwyane Wade',
 						icon: '',
-						avatar: '/static/images/chat/avatar-red.jpg',
+						avatar: './static/images/chat/avatar-red.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'D'
 					},{
 						title: '周杰伦',
 						icon: '',
-						avatar: '/static/images/chat/avatar-yellow.jpg',
+						avatar: './static/images/chat/avatar-yellow.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'Z'
 					},{
 						title: '陈奕迅',
 						icon: '',
-						avatar: '/static/images/chat/avatar-green.jpg',
+						avatar: './static/images/chat/avatar-green.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'C'
 					},{
 						title: 'Andre Huang',
 						icon: '',
-						avatar: '/static/images/chat/avatar-red.jpg',
+						avatar: './static/images/chat/avatar-red.jpg',
 						intro: '',
 						hrefTo: '/me',
 						category: 'A'
 					},{
 						title: '林宥嘉',
 						icon: '',
-						avatar: '/static/images/chat/avatar-green.jpg',
+						avatar: './static/images/chat/avatar-green.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'L'
 					},{
 						title: '村上春树',
 						icon: '',
-						avatar: '/static/images/chat/avatar-yellow.jpg',
+						avatar: './static/images/chat/avatar-yellow.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'C'
 					},{
 						title: '东野圭吾',
 						icon: '',
-						avatar: '/static/images/chat/avatar-blue.jpg',
+						avatar: './static/images/chat/avatar-blue.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'D'
 					},{
 						title: '林俊杰',
 						icon: '',
-						avatar: '/static/images/chat/avatar-blue.jpg',
+						avatar: './static/images/chat/avatar-blue.jpg',
 						intro: '',
 						hrefTo: '',
 						category: 'L'

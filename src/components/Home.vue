@@ -31,7 +31,7 @@ export default {
                 },
                 {
                     name: 'Dwyane Wade',
-                    avatar: '/static/images/chat/avatar-blue.jpg',
+                    avatar: './static/images/chat/avatar-blue.jpg',
                     latestWord: 'This is my house',
                     latestTime: '09:21',
                     newMsg: false,
@@ -39,7 +39,7 @@ export default {
                 },
                 {
                     name: '周杰伦',
-                    avatar: '/static/images/chat/avatar-green.jpg',
+                    avatar: './static/images/chat/avatar-green.jpg',
                     latestWord: '哎哟，不错喔~',
                     latestTime: '01:22',
                     newMsg: true,
