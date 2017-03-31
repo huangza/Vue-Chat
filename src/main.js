@@ -10,8 +10,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routerMap from './route-config'
 import App from './App'
+import VueResouce from 'vue-resource'
 
 Vue.use(VueRouter)
+
+Vue.use(VueResouce)
 
 const router = new VueRouter({
     hashbang:true,

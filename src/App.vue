@@ -12,7 +12,7 @@
             <tab-bar></tab-bar>
         </div>
     </footer>
-    <div class="page">
+    <div class="page" :style="pageStyle">
         <div class="wrapper">
             <router-view></router-view>
         </div>
@@ -24,14 +24,17 @@ import HeaderBar from './components/Header'
 import TabBar from './components/TabBar'
 import SearchBar from './components/SearchBar'
 
+require('assets/css/reset.css')
+require('assets/css/iconfont.css')
+
 
 if(window.addEventListener) {
     window.addEventListener("load",function() {
-      // Set a timeout...
-      setTimeout(function(){
-        // Hide the address bar!
-        window.scrollTo(0, 1);
-      }, 0);
+        // Set a timeout...
+        setTimeout(function(){
+            // Hide the address bar!
+            window.scrollTo(0, 1);
+        }, 0);
     });
     // window.addEventListener("click", function(event){
     //     console.log(event.target);
@@ -39,148 +42,32 @@ if(window.addEventListener) {
 }
 
 export default {
-  components: {
-    HeaderBar,
-    TabBar,
-    SearchBar
-  }
+    components: {
+        HeaderBar,
+        TabBar,
+        SearchBar
+    },
+
+    computed: {
+        pageStyle () {
+            return isPC() ? { marginRight: '-17px' } : null
+        }
+    }
+}
+
+function isPC() {  
+    var userAgentInfo = navigator.userAgent;  
+    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"]; 
+    var flag = true;  
+    for (var v = 0, len = Agents.length; v < len; v++) {  
+       if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
+    }  
+    return flag;  
 }
 </script>
 
-<style src="./assets/css/reset.css"></style>
+<!-- <style src="./assets/css/reset.css"></style> -->
 <!-- <style src="./assets/css/common.css"></style> -->
-<style src="./assets/css/lib/font-awesome-4.7.0/css/font-awesome.min.css"></style>
-<style lang="stylus">
-@import "./assets/css/com/*"
-
-// size
-$header-h = 44px;
-$footer-h = 50px;
-$headersub-h = 44px;
-
-// color
-$app-bg = #efeff4;
-$headersub-brd = #dfdfdd;
-$search-brd = #e5e5ea;
-$footer-brd = #b2b2b2;
-$footer-bg = #edebea;
-
-html {
-  height: 100%;
-}
-
-@media screen and (min-width: 320px) {html{font-size:50px;}}
-@media screen and (min-width: 360px) {html{font-size:56.25px;}}
-@media screen and (min-width: 375px) {html{font-size:58.59375px;}}
-@media screen and (min-width: 400px) {html{font-size:62.5px;}}
-@media screen and (min-width: 414px) {html{font-size:64.6875px;}}
-@media screen and (min-width: 440px) {html{font-size:68.75px;}}
-@media screen and (min-width: 480px) {html{font-size:75px;}}
-@media screen and (min-width: 520px) {html{font-size:81.25px;}}
-@media screen and (min-width: 560px) {html{font-size:87.5px;}}
-@media screen and (min-width: 600px) {html{font-size:93.75px;}}
-@media screen and (min-width: 640px) {html{font-size:100px;}}
-@media screen and (min-width: 680px) {html{font-size:106.25px;}}
-@media screen and (min-width: 720px) {html{font-size:112.5px;}}
-@media screen and (min-width: 760px) {html{font-size:118.75px;}}
-@media screen and (min-width: 800px) {html{font-size:125px;}}
-@media screen and (min-width: 960px) {html{font-size:150px;}}
-
-body {
-  position: relative
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  // font-size: .32rem;
-  font-size: 14px;
-  background: $app-bg;
-}
-
-#app {
-  color: #2c3e50;
-  text-align: center;
-}
-
-.header,
-.footer {
-    background-color: #fff;
-    z_index('n');
-}
-.header,
-.header-sub,
-.footer,
-.page {
-    position: absolute;
-    left: 0;
-    right: 0;
-}
-.header {
-    height: $header-h;
-    line-height: @height;
-    top: 0;
-    // border-bottom: 1px solid #b7b7b7;
-    color: #fff;
-    background: linear-gradient(180deg,#303036,#3c3b40);
-    & ~ .page {
-        padding-top: $header-h;
-    }
-}
-.footer {
-    height: $footer-h;
-    bottom: 0;
-    border-top: 1px solid #b7b7b7;
-    background: #f2f1f0;
-    & ~ .page {
-        padding-bottom: $footer-h;
-    }
-}
-.header-sub {
-    top: $header-h;
-    height: $headersub-h;
-    line-height: @height;
-    // border-bottom: 1px solid $headersub-brd;
-    // background: $headersub-bg;
-    z_index(2);
-}
-.page {
-    width: 100%;
-    height: 100%;
-    z_index('c');
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-.wrapper {
-    width: 100%
-}
-.header-sub ~ .page {
-    padding-top: $header-h + $headersub-h;
-}
-.fixed-top {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-}
-.fixed-bottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.effect {
-    opacity: 1;
-    transition: all .3s ease;
-}
-.list:first-child {
-    padding-top: 15px;
-}
-.item-icon {
-    // dev
-    background-image: url(/static/images/icons.png)
-    // prod
-    // background-image: url(/vue-chat/static/images/icons.png)
-    background-repeat: no-repeat
-    background-color: transparent
-}
-</style>
+<!-- <style src="./assets/css/lib/font-awesome-4.7.0/css/font-awesome.min.css"></style> -->
+<!-- <style src="./assets/css/iconfont.css"></style> -->
+<style lang="stylus" src="assets/css/pages/app.styl"></style>
