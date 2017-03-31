@@ -1,12 +1,24 @@
 <template>
-    <div class="effect list" style="padding-top: 21px">
-    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+    <div class="wrapper effect">
+    	<div class="list">
+	    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+	    </div>
     </div>
 </template>
 
 <script>
-import AlphaList from './AlphaList'
+import AlphaList from 'components/AlphaList'
 export default {
+
+	props: ['initialUser'],
+
+    route: {
+        activate (transition) {
+            // console.log('discover activate')
+            this.$dispatch('page', 'discover')
+            transition.next()
+        } 
+    },
 
     components: {
         AlphaList

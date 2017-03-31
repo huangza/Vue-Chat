@@ -2,7 +2,7 @@
     "chat": [
         {
             "name": "Uzumaki Naruto",
-            "avatar": "../img/chat/avatar-yellow.jpg",
+            "avatar": "./static/img/chat/avatar-yellow.jpg",
             "latestWord": "笔直向前，说到做到",
             "latestTime": "17:29",
             "newMsg": true,
@@ -10,7 +10,7 @@
         },
         {
             "name": "樱木花道",
-            "avatar": "./static/img/chat/avatar-red.jpg",
+            "avatar": "./static/images/chat/avatar-red.jpg",
             "latestWord": "我果然是个天才",
             "latestTime": "13:49",
             "newMsg": true,

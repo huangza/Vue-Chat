@@ -1,14 +1,26 @@
-z_index(mode)
-	if mode == 'c'
-		z-index: 1
-	else if mode == 'n'
-		z-index: 110
-	else if mode == 'm'
-		z-index: 1000
-	else if mode == 'p'
-		z-index: 1010
-	else
+z_index(mode) {
+	if mode is a 'unit' {
 		z-index: mode
+	}
+	else {
+		count = arguments[1] == null ? 0 : arguments[1]
+		if mode == 'c' {
+			z-index: 1
+		}
+		else if mode == 'n' {
+			z-index: 110
+		}
+		else if mode == 'm' {
+			z-index: 1000
+		}
+		else if mode == 'p' {
+			z-index: 1010
+		}
+		else {
+			z-index: mode
+		}
+	}
+}
 
 trans-scaleY(s)
 	-webkit-transform: scaleY(s)

@@ -1,16 +1,9 @@
-/*import Vue from 'vue'
-import App from './App'
-
-new Vue({
-  el: 'body',
-  components: { App }
-})*/
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routerMap from './route-config'
 import App from './App'
 import VueResouce from 'vue-resource'
+import fastclick from 'fastclick'
 
 Vue.use(VueRouter)
 
@@ -23,12 +16,14 @@ const router = new VueRouter({
 
 router.map(routerMap)
 
+fastclick.attach(document.body)
+
 const app = Vue.extend(App)
 
 router.start(app, 'app')
 
 router.redirect({
-    '*': '/home'
+    '*': '/chat'
 })
 
 window.router = router

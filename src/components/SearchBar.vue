@@ -6,20 +6,20 @@
 		class="search-label"
 		v-show="!showInput"
 		@click="toggleInput">
-			<i class="search-icon fa fa-search"></i>
+			<i class="search-icon iconfont icon-search"></i>
 			<span>&nbsp;搜索&nbsp;</span>
 		</label>
 		<div 
 		class="search-box"
 		v-show="showInput">
-			<i class="search-icon fa fa-search"></i>
+			<i class="search-icon iconfont icon-search"></i>
 			<input 
 			type="search" 
 			id="searchInput" 
 			class="search-input" 
 			placeholder="搜索" 
 			required>
-			<a href="javascript:;" class="icon icon-clear search-clear" id="searchClear"></a>
+			<a href="javascript:;" class="iconfont icon-clear search-clear" id="searchClear"></a>
 		</div>
 		<a href="javascript:;" id="searchCancel" 
 		class="search-cancel"

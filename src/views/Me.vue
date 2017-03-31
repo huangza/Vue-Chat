@@ -1,16 +1,27 @@
-<template>
-	<div class="effect user list">
-		<chat-list :initial-type="type" :initial-list="user"></chat-list>
-	</div>
-	<div class="effect list" >
-		<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
-	</div>
+<template>	
+    <div class="wrapper effect">
+		<div class="user list">
+			<chat-list :initial-type="type" :initial-list="user"></chat-list>
+		</div>
+		<div class="list" >
+			<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+		</div>
+    </div>
 </template>
 
 <script>
-import ChatList from './ChatList'
-import AlphaList from './AlphaList'
+import ChatList from 'components/ChatList'
+import AlphaList from 'components/AlphaList'
 export default {
+
+	props: ['initialUser'],
+
+    route: {
+        activate (transition) {
+            this.$dispatch('page', 'me')
+            transition.next()
+        }
+    },
 
 	components: {
 		ChatList,

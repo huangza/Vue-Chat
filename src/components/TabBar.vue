@@ -7,7 +7,7 @@
              data-role="nav-links_item"
              v-link="item.link">
                 <span class="nav-links_icon">
-                    <i class="fa" :class="item.icon" aria-hidden="true"></i>
+                    <i class="iconfont" :class="item.icon" aria-hidden="true"></i>
                 </span>
                 <p class="nav-links_label" v-text="item.label"></p>
             </li>
@@ -24,25 +24,25 @@ export default {
             tab: [
                 {
                     label: "首页",
-                    icon: "fa-comment",
-                    link: "/home",
+                    icon: " icon-wechat",
+                    link: "/chat",
                     isOn: true
                 },
                 {
                     label: "通讯录",
-                    icon: "fa-address-book-o",
+                    icon: " icon-contact",
                     link: "/contact",
                     isOn: false
                 },
                 {
                     label: "发现",
-                    icon: "fa-compass",
+                    icon: " icon-find",
                     link: "/discover",
                     isOn: false
                 },
                 {
                     label: "我",
-                    icon: "fa-user-o",
+                    icon: " icon-me",
                     link: "/me",
                     isOn: false
                 }
@@ -70,7 +70,7 @@ export default {
         font-size: 0;
         color: #999;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        padding: 7px 0 0;
+        padding: 2px 0 0;
         &:hover {
             cursor: pointer;
         }
@@ -83,10 +83,13 @@ export default {
     }
     .nav-links_icon {
         display: inline-block;
-        width: 21px;
-        height: 21px;
-        font-size: 21px;
-        line-height: 21px;
+        width: 24px;
+        height: 24px;
+        font-size: 24px;
+        line-height: 24px;
+        i {
+            font-size: 26px;
+        }
     }
     .nav-links_label {
         font-size: 10px;

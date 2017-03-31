@@ -1,7 +1,7 @@
 
-@import "../com/*"
-// @import "./assets/css/com/mixin.styl"
-// @import "./assets/css/com/value.styl"
+// @import "../com/*"
+@import "../com/mixin.styl"
+@import "../com/value.styl"
 
 // size
 $header-h = 44px;
@@ -122,6 +122,14 @@ body {
 .effect {
     opacity: 1;
     transition: all .3s ease;
+}
+.effect--30 {
+    opacity: 0;
+    transform: translate3d(-30%, 0, 0);
+}
+.effect--50 {
+    opacity: 0;
+    transform: translate3d(-50%, 0, 0);
 }
 .list:first-child {
     padding-top: 15px;
