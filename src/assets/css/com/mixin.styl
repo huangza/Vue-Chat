@@ -4,11 +4,21 @@ z_index(mode) {
 	}
 	else {
 		count = arguments[1] == null ? 0 : arguments[1]
+		// 一级页面的 content
 		if mode == 'c' {
-			z-index: 1
+			z-index: 1 + count
 		}
+		// 一级页面的 nav
 		else if mode == 'n' {
-			z-index: 110
+			z-index: 10 + count
+		}
+		// 二级页面的 content
+		else if mode == 'sc' {
+			z-index: 21 + count
+		}
+		// 二级页面的 nav
+		else if mode == 'sn' {
+			z-index: 30 + count
 		}
 		else if mode == 'm' {
 			z-index: 1000

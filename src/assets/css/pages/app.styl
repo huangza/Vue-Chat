@@ -3,17 +3,6 @@
 @import "../com/mixin.styl"
 @import "../com/value.styl"
 
-// size
-$header-h = 44px;
-$footer-h = 50px;
-$headersub-h = 44px;
-
-// color
-$app-bg = #efeff4;
-$headersub-brd = #dfdfdd;
-$search-brd = #e5e5ea;
-$footer-brd = #b2b2b2;
-$footer-bg = #edebea;
 
 html {
   height: 100%;
@@ -96,7 +85,7 @@ body {
 .page {
     width: 100%;
     height: 100%;
-    z_index('c');
+    // z_index('c');
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     background: $app-bg;
@@ -136,7 +125,7 @@ body {
 }
 .item-icon {
     // dev
-    background-image: url(../../img/icons.png)
+    background-image: url(../../images/icons.png)
     // prod
     // background-image: url(/vue-chat/static/images/icons.png)
     background-repeat: no-repeat

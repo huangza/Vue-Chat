@@ -32,6 +32,9 @@ if(window.addEventListener) {
             window.scrollTo(0, 1);
         }, 0);
     });
+    window.addEventListener("click", function(event){
+        console.log(event.target);
+    });
 }
 
 function isPC() {  
@@ -67,7 +70,7 @@ export default {
             user: [{
                 "title": "Andre Huang",
                 "icon": "",
-                "avatar": "./static/img/chat/avatar-red.jpg",
+                "avatar": "./static/images/chat/avatar-red.jpg",
                 "intro": "",
                 "hrefTo": "/me",
                 "category": "A"
