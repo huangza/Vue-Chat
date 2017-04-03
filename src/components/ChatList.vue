@@ -16,7 +16,7 @@
 		</template>
 		<template v-else>
 			<div class="chat-item" v-for="item in list" :class="{' brd-bottom': $index < list.length-1}">
-				<a href="javascript:;">
+				<a href="javascript:;" @click="toDialogue($index)">
 					<div class="item-hd" :class="{' chat-badge': item.newMsg}">
 						<img :src="item.avatar" class="chat-avatar">
 						<span class="item-badge" :class="{' item-badge-dot': !item.msgCount}" v-if="item.newMsg">{{item.msgCount}}</span>
@@ -35,11 +35,28 @@
 <script>
 export default {
 	props: ['initialType', "initialList"],
+
+	computed: {
+		list () {
+			return this.initialList;
+		}
+	},
+	
 	data () {
 		return {
 			isUser: this.initialType ? this.initialType : false,
-			list: this.initialList,
+			// list: this.initialList,
 			test: this.initialList[0]
+		}
+	},
+
+	methods: {
+		toDialogue (index) {
+			// this.target = $index
+			this.$parent.$emit('to-dialogue', index)
+			this.$router.go({
+				path: '/chat/dialogue'
+			})
 		}
 	}
 }

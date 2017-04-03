@@ -3,7 +3,7 @@
         <span
          class="action-bar_open"
          @click="toggleList">
-            <i class="fa fa-plus"></i>
+            <i class="iconfont icon-tips-jia"></i>
         </span>
         <ul
          class="action-bar_list p-absolute"
@@ -24,9 +24,9 @@
 <script>
 export default {
     ready () {
-        window.addEventListener("click", function(event){
-            console.log(event.target);
-        });
+        // window.addEventListener("click", function(event){
+        //     console.log(event.target);
+        // });
     },
     data () {
         return {
@@ -73,7 +73,9 @@ export default {
     height: 44px
     .action-bar_open
         display: inline-block
-        font-size: 20px
+        i {
+            font-size: 20px
+        }
     .action-bar_list
         background-color: #49484b
         font-size: 16px

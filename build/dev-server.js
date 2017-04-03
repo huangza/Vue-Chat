@@ -30,6 +30,29 @@ var proxyTable = config.dev.proxyTable
 
 // 创建一个 express 实例
 var app = express()
+
+// @: DIY 测试数据
+var appData = require('../src/mock/data.json')
+var chat = appData.chat
+var contact = appData.contact
+
+var apiRoutes = express.Router()
+apiRoutes
+.get('/chat', function(req, res){
+  res.json({
+    errno: 0,
+    data: chat
+  })
+})
+.get('/contact', function(req, res){
+  res.json({
+    errno: 0,
+    data: contact
+  })
+})
+app.use('/api', apiRoutes)
+// @: DIY 测试数据 END
+
 // 根据指定的 webpack 配置文件来创建一个 compiler 对象
 var compiler = webpack(webpackConfig)
 
