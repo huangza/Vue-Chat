@@ -162,3 +162,20 @@
 // .item-icon-public {
 // 	background: transparent url(/static/images/icons@x3.png) no-repeat -309px center
 // }
+
+/* router-view transition effect */
+.cover-transition {
+    transition: all .35s ease
+    opacity: 1
+}
+.cover-enter,
+.cover-leave {
+    opacity: 0.2
+    transform: translate3d(100%, 0, 0)
+}
+// .cover-enter {
+// 	transform: translate3d(100%, 0, 0)
+// }
+// .cover-leave {
+// 	transform: translate3d(100%, 0, 0)
+// }

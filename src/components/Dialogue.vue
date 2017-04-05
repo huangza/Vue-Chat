@@ -1,21 +1,36 @@
 <template>
 	<div class="full-page vc-dialogue">
 		<div class="dialogue-hd">
-			<div class="hd-left back-arrow">
+			<div class="hd-left back-arrow" @click="goBack">
 				<span class="back-label">微信</span>
 			</div>
-			<div class="hd-center dialogue-title">用户名20170401</div>
+			<div class="hd-center dialogue-title">{{friend.name}}</div>
 			<div class="hd-right">
 				<span class="iconfont icon-chat-friends"></span>
 			</div>
 		</div>
 		<div class="dialogue-bd">body</div>
-		<div class="dialogue-ft"></div>
+		<div class="dialogue-ft">
+			<div class="ft-left">
+				<span class="dialogue-switch"></span>
+			</div>
+			<div class="ft-center">
+				<input type="text" name="msg" class="dialogue-input">
+			</div>
+			<div class="ft-right">
+				<div class="dialogue-func"></div>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
+
+	ready () {
+		// console.log(this.$router)
+	},
+
 	route: {
 		activate (transition) {
             this.$parent.$emit('route-pipe', true)
@@ -25,6 +40,22 @@ export default {
             this.$parent.$emit('route-pipe', false)
             transition.next()
         },
+	},
+
+	data () {
+		return {
+			friend: {
+				name: '用户20170401'
+			}
+		}
+	},
+
+	methods: {
+		goBack () {
+			this.$router.go({
+				path: '/chat'
+			})
+		}
 	},
 
 	transition: {
@@ -56,6 +87,9 @@ export default {
 		padding: $gap
 		color: #fff
 		z_index('sn')
+	}
+	.dialogue-bd {
+		padding: $header-h 0 $footer-h 0
 	}
 	.dialogue-ft {
 		position: absolute

@@ -10,7 +10,7 @@
         </div>
     </footer>
     <div class="page" :style="pageStyle">
-        <router-view keep-alive :initial-user="user"></router-view>
+        <router-view :initial-user="user"></router-view>
     </div>
 </template>
 

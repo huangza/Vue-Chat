@@ -5,7 +5,7 @@
             <chat-list :initial-list="friends"></chat-list>
         </div>
     </div>
-    <router-view keep-alive></router-view>
+    <router-view keep-alive transition="cover"></router-view>
 </template>
 
 <script>

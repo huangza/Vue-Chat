@@ -1,14 +1,5 @@
 <template>
 	<div class="vc-search-bar brd-bottom">
-		<label 
-		for="searchInput" 
-		id="searchTxt" 
-		class="search-label"
-		v-show="!showInput"
-		@click="toggleInput">
-			<i class="search-icon iconfont icon-search"></i>
-			<span>&nbsp;搜索&nbsp;</span>
-		</label>
 		<div 
 		class="search-box"
 		v-show="showInput">
@@ -18,50 +9,72 @@
 			id="searchInput" 
 			class="search-input" 
 			placeholder="搜索" 
+			v-model="query"
 			required>
-			<a href="javascript:;" class="iconfont icon-clear search-clear" id="searchClear"></a>
+			<a href="javascript:;" class="iconfont icon-clear search-clear" id="searchClear" v-show="showClear" @touchend="clearQuery">X</a>
 		</div>
+		<label 
+		for="searchInput" 
+		id="searchTxt" 
+		class="search-label"
+		v-show="!showInput"
+		@touchend="toggleInput">
+			<i class="search-icon iconfont icon-search"></i>
+			<span>&nbsp;搜索&nbsp;</span>
+		</label>
 		<a href="javascript:;" id="searchCancel" 
 		class="search-cancel"
 		v-show="showInput"
-		@click="toggleInput">取消</a>
+		@touchend="toggleInput">取消</a>
 	</div>
 </template>
 
 <script>
 export default {
 	ready () {
-		console.dir(toString.call(this.$el))
-		// document.addEventListener('click', (e) => {
-		//     if( !this.$el.contains(e.target) )  this.showInput = false
-		// })
-		// document.addEventListener('touchend', (e) => {
-		//     if( !this.$el.contains(e.target) )  this.showInput = false
-		// })
 	},
 	data () {
 		return {
-			showInput: false
+			showInput: false,
+			query: ''
 		}
 	},
+
+	computed: {
+		showClear () {
+			if (this.query) {
+				return this.query.length > 0 ? true : false
+			} else {
+				return false
+			}
+		}
+	},
+
 	methods: {
 		toggleInput (flag) {
 			this.showInput = !this.showInput
+		},
+		clearQuery () {
+			this.showClear = false
+			this.query = ''
 		}
 	}
 }
 </script>
 
 <style lang="stylus">
-.vc-search-bar
+@import '../assets/css/com/mixin.styl'
+@import '../assets/css/com/value.styl'
+.vc-search-bar {
 	position: relative
 	display: flex
 	height: 44px
 	padding: 8px
 	line-height: 1
-	.search-icon
+	.search-icon {
 		color: #8d8e92
-	.search-label
+	}
+	.search-label {
 		// display: none
 		position: absolute
 		left: 8px
@@ -74,41 +87,71 @@ export default {
 		text-align: center
 		color: #8f8d94
 		font-size: 14px
-		span
+		z_index(2)
+		span {
 			display: inline-block
+		}
 		i,
-		span
+		span {
 			vertical-align: middle
 			height: 26px
 			line-height: 24px
-	.search-box
+		}
+	}
+	.search-box {
+		position: relative
 		flex: 1
 		line-height: 28px
 		background: #fff
 		padding: 0 30px
 		border-radius: 3px
-		.search-icon
+		z_index(1)
+		.search-icon {
 			position: absolute
-			top: 8px
-			left: 18px
+			top: 0
+			left: $gap
 			line-height: 28px
-	.search-input
+			vertical-align: middle
+		}
+	}
+	.search-input {
+		width: 100%
 		height: 28px
 		line-height: @height
 		padding: 4px 0
 		border: none
 		font-size: 14px
-		&::-webkit-input-placeholder
+		&::-webkit-input-placeholder {
 			color: #8d8e92
-		&:-moz-placeholder
+		}
+		&:-moz-placeholder {
 			color: #8d8e92
-		&::-moz-placeholder
+		}
+		&::-moz-placeholder {
 			color: #8d8e92
-		&:-ms-input-placeholder
+		}
+		&:-ms-input-placeholder {
 			color: #8d8e92
-	.search-cancel
+		}
+	}
+	.search-clear {
+		position: absolute
+		top: 6px
+		right: $gap
+		width: 16px
+		height: @width
+		line-height: @height
+		font-size: 14px
+		text-align: center
+		border-radius: 50%
+		color: #fff
+		background: $app-bg
+	}
+	.search-cancel {
 		margin-left: 10px
 		line-height: 28px
 		color: #09BB07;
-		white-space: nowrap;
+		white-space: nowrap
+	}
+}
 </style>
