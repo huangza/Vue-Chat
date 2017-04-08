@@ -3,6 +3,7 @@
         <search-bar></search-bar>
         <div class="chat-list">
             <chat-list :initial-list="friends"></chat-list>
+            <span v-show="needed">{{newMsgCount}}</span>
         </div>
     </div>
     <router-view keep-alive transition="cover"></router-view>
@@ -37,6 +38,20 @@ export default {
         }
     },
 
+    computed: {
+        newMsgCount () {
+            var total = 0
+            this.friends.forEach(function(item){
+                if (item.newMsg && item.msgCount > 0) {
+                    total += item.msgCount
+                }
+            })
+            this.$dispatch('header-msg-count', total)
+            console.log(1)
+            return total
+        }
+    },
+
     components: {
         ChatList,
         SearchBar
@@ -48,6 +63,7 @@ export default {
             vm.$http.get(vm.apiUrl)
                 .then( (res) => {
                     vm.$set('friends', res.body.data)
+                    // console.log(this.friends)
                 } )
         },
         getFriends_PROD () {
@@ -68,7 +84,7 @@ export default {
         'to-dialogue' (index) {
             console.log('*No: ' + index)
         }
-    }
+    },
 }
 </script>
 

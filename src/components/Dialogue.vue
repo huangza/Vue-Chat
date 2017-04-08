@@ -1,24 +1,37 @@
 <template>
 	<div class="full-page vc-dialogue">
-		<div class="dialogue-hd">
-			<div class="hd-left back-arrow" @click="goBack">
+		<!-- 顶部信息 -->
+		<div class="dialogue-hd flexbox">
+			<div class="hd-left back-arrow" @touchend="goBack">
 				<span class="back-label">微信</span>
 			</div>
-			<div class="hd-center dialogue-title">{{friend.name}}</div>
+			<div class="hd-center dialogue-title flex-1">{{friend.name}}</div>
 			<div class="hd-right">
 				<span class="iconfont icon-chat-friends"></span>
 			</div>
 		</div>
-		<div class="dialogue-bd">body</div>
-		<div class="dialogue-ft">
+		<!-- 对话 -->
+		<div class="dialogue-bd">
+			<div class="dialogue-container"></div>
+		</div>
+		<!-- 底部输入框 -->
+		<div class="dialogue-ft flexbox">
 			<div class="ft-left">
-				<span class="dialogue-switch"></span>
+				<label class="dialogue-btn dialogue-switch iconfont"
+				 :class="{'icon-dialogue-voice': usingVoice, 'icon-dialogue-jianpan': !usingVoice}"
+				 @touchend="toggleInputVoice"
+				 for="msg"
+				 ></label>
 			</div>
-			<div class="ft-center">
-				<input type="text" name="msg" class="dialogue-input">
+			<div class="ft-center flex-1">
+				<input type="text" name="msg" id="msg" class="dialogue-input" 
+				v-model="myMsg" 
+				v-show="!usingVoice" >
+				<div class="dialogue-voice" v-show="usingVoice">按住&nbsp;说话</div>
 			</div>
 			<div class="ft-right">
-				<div class="dialogue-func"></div>
+				<span class="dialogue-btn dialogue-func iconfont icon-dialogue-smile"></span>
+				<span class="dialogue-btn dialogue-emoji iconfont icon-dialogue-jia"></span>
 			</div>
 		</div>
 	</div>
@@ -46,11 +59,21 @@ export default {
 		return {
 			friend: {
 				name: '用户20170401'
-			}
+			},
+			usingVoice: true,
+			myMsg: '',
+			focused: false
 		}
 	},
 
 	methods: {
+		toggleInputVoice () {
+			this.usingVoice = !this.usingVoice
+			this.focused = !this.usingVoice
+		},
+		offFocus () {
+			this.focused = false
+		},
 		goBack () {
 			this.$router.go({
 				path: '/chat'
@@ -81,14 +104,17 @@ export default {
 		top: 0
 		left: 0
 		right: 0
-		display: flex
+		// display: flex
 		height: $header-h
 		// line-height: @height
 		padding: $gap
 		color: #fff
+	    background: linear-gradient(180deg,#303036,#3c3b40)
 		z_index('sn')
 	}
 	.dialogue-bd {
+		width: 100%
+		height: 100%
 		padding: $header-h 0 $footer-h 0
 	}
 	.dialogue-ft {
@@ -97,6 +123,9 @@ export default {
 		left: 0
 		right: 0
 		height: $footer-h
+		padding: 8px $gap
+	    border-top: 1px solid #b7b7b7
+	    background: #f2f1f0
 		z_index('sn')
 	}
 	.hd-left,
@@ -115,7 +144,7 @@ export default {
 		}
 	}
 	.hd-center {
-		flex: 1
+		// flex: 1
 		text-align: center
 	}
 	.hd-right {
@@ -132,20 +161,54 @@ export default {
 			content: ' '
 			position: absolute
 			top: 50%
-			left: 10px
+			left: 8px
 			display: inline-block
-			width: 8px
-			height: 8px
-			border-width: 0 0 2px 2px
-			border-color: #C8C8CD
+			width: 12px
+			height: 12px
+			border-width: 0 0 3px 3px
+			border-color: #fff
 			border-style: solid
-			margin-top: -4px
+			margin-top: -6px
 			background: transparent
 			transform: rotateZ(45deg)
 		}
 	}
 	.dialogue-title {
 		font-size: 18px
+	}
+	.ft-left,
+	.ft-center,
+	.ft-right {
+		display: inline-block
+		vertical-align: middle
+		line-height: 33px
+	}
+	.ft-center {
+		padding-left: $gap
+		padding-right: $gap
+	}
+	.dialogue-input {
+		width: 100%
+		height: 33px
+		line-height: (@height - 2)
+		padding-left: $gap
+		padding-right: $gap
+		border: 1px solid #b7b7b7
+		border-radius: 5px
+		background: #fff
+	}
+	.dialogue-voice {
+		height: 33px
+		line-height: (@height - 2)
+		border: 1px solid #b7b7b7
+		border-radius: 5px
+		text-align: center
+		color: #333
+	}
+	.dialogue-btn {
+		display: inline-block
+		font-size: 28px
+		color: #999
 	}
 }
 </style>

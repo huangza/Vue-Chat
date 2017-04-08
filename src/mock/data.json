@@ -14,7 +14,7 @@
             "latestWord": "我果然是个天才",
             "latestTime": "13:49",
             "newMsg": true,
-            "msgCount": ""
+            "msgCount": 0
         },
         {
             "name": "Dwyane Wade",
@@ -22,7 +22,7 @@
             "latestWord": "This is my house",
             "latestTime": "09:21",
             "newMsg": false,
-            "msgCount": ""
+            "msgCount": 0
         },
         {
             "name": "周杰伦",
@@ -30,73 +30,120 @@
             "latestWord": "哎哟，不错喔~",
             "latestTime": "01:22",
             "newMsg": true,
-            "msgCount": "99+"
+            "msgCount": 123
         }
     ],
     "contact": [
         {
-            "title": "Uzumaki Naruto",
+            "_uid": "0000000000000001",
+            "name": "Uzumaki Naruto",
             "icon": "",
             "avatar": "./static/images/chat/avatar-yellow.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "U"
+            "category": "U",
+            "gender": 1,
+            "vcid": "vcid2017040717250001",
+            "region": ""
         },{
+            "_uid": "0000000000000002",
+            "name": "樱木花道",
+            "icon": "",
+            "avatar": "./static/imgg/chat/avatar-red.jpg",
+            "intro": "",
+            "hrefTo": "",
+            "category": "Y",
+            "gender": 1,
+            "vcid": "vcid2017040717250002",
+            "region": ""
+        },{
+            "_uid": "0000000000000005",
             "title": "Uchiha Itachi",
             "icon": "",
             "avatar": "./static/images/chat/avatar-blue.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "U"
+            "category": "U",
+            "gender": 1,
+            "vcid": "vcid2017040717250003",
+            "region": ""
         },{
+            "_uid": "0000000000000003",
             "title": "Dwyane Wade",
             "icon": "",
             "avatar": "./static/images/chat/avatar-red.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "D"
+            "category": "D",
+            "gender": 1,
+            "vcid": "vcid2017040717250004",
+            "region": ""
         },{
+            "_uid": "0000000000000004",
             "title": "周杰伦",
             "icon": "",
             "avatar": "./static/images/chat/avatar-yellow.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "Z"
+            "category": "Z",
+            "gender": 1,
+            "vcid": "vcid2017040717250005",
+            "region": ""
         },{
+            "_uid": "0000000000000006",
             "title": "陈奕迅",
             "icon": "",
             "avatar": "./static/images/chat/avatar-green.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "C"
+            "category": "C",
+            "gender": 1,
+            "vcid": "vcid2017040717250006",
+            "region": ""
         },{
+            "_uid": "0000000000000007",
             "title": "林宥嘉",
             "icon": "",
             "avatar": "./static/images/chat/avatar-green.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "L"
+            "category": "L",
+            "gender": 1,
+            "vcid": "vcid2017040717250007",
+            "region": ""
         },{
+            "_uid": "0000000000000008",
             "title": "村上春树",
             "icon": "",
             "avatar": "./static/images/chat/avatar-yellow.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "C"
+            "category": "C",
+            "gender": 1,
+            "vcid": "vcid2017040717250008",
+            "region": ""
         },{
+            "_uid": "0000000000000009",
             "title": "东野圭吾",
             "icon": "",
             "avatar": "./static/images/chat/avatar-blue.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "D"
+            "category": "D",
+            "gender": 1,
+            "vcid": "vcid2017040717250009",
+            "region": ""
         },{
+            "_uid": "0000000000000010",
             "title": "林俊杰",
             "icon": "",
             "avatar": "./static/images/chat/avatar-blue.jpg",
             "intro": "",
             "hrefTo": "",
-            "category": "L"
+            "category": "L",
+            "gender": 1,
+            "vcid": "vcid2017040717250010",
+            "region": ""
         }
     ]
 }

@@ -93,9 +93,9 @@ export default {
 		}
 		i,
 		span {
-			vertical-align: middle
+			// vertical-align: middle
 			height: 26px
-			line-height: 24px
+			line-height: 26px
 		}
 	}
 	.search-box {

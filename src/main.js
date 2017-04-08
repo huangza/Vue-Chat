@@ -4,6 +4,7 @@ import routerMap from './route-config'
 import App from './App'
 import VueResouce from 'vue-resource'
 import fastclick from 'fastclick'
+require('assets/js/util.js')
 
 // 安装模块
 Vue.use(VueRouter)
@@ -32,19 +33,30 @@ router.redirect({
     '*': '/chat'
 })
 
-// 自定义组件
-/*Vue.directive('focus', {
-	update (el, binding) {
-		console.log(this)
-		console.log('el: '+el, 'binding: '+binding)
-		// if (el === true) {
-		// 	this.focus()
-		// }
+// 过滤器
+Vue
+.filter('msgFormat', (val, limit) => {
+	if (!val) {
+		return
 	}
-})*/
-Vue.directive('focus', function(value) {
-	console.log(this)
-	console.log('value: ' + value)
+	if (util.typeof(limit) !== 'number') {
+		limit = 99
+	}
+	if (val > limit) {
+		val = limit + '+'
+	} else if (val === 0) {
+		val = ''
+	}
+	return val
+})
+
+// 指令
+Vue
+.directive('focus', (el) => {
+	console.log('focus',el)
+	if (el && el.nodeType === '1') {
+		el.focus()
+	}
 })
 
 // 挂载到全局对象中

@@ -16,10 +16,10 @@
 		</template>
 		<template v-else>
 			<div class="chat-item" v-for="item in list" :class="{' brd-bottom': $index < list.length-1}">
-				<a href="javascript:;" @click="toDialogue($index)">
+				<a href="javascript:;" @touchend="toDialogue($index)">
 					<div class="item-hd" :class="{' chat-badge': item.newMsg}">
 						<img :src="item.avatar" class="chat-avatar">
-						<span class="item-badge" :class="{' item-badge-dot': !item.msgCount}" v-if="item.newMsg">{{item.msgCount}}</span>
+						<span class="item-badge" :class="{' item-badge-dot': item.msgCount === 0}" v-if="item.newMsg">{{item.msgCount | msgFormat}}</span>
 					</div>
 					<div class="item-bd">
 						<div class="item-title">{{item.name}}</div>

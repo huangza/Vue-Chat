@@ -37,22 +37,12 @@ if(window.addEventListener) {
     });
 }
 
-function isPC() {  
-    var userAgentInfo = navigator.userAgent;  
-    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"]; 
-    var flag = true;  
-    for (var v = 0, len = Agents.length; v < len; v++) {  
-       if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
-    }  
-    return flag;  
-}
-
 export default {
 
     created () {},
 
     ready () {
-        if (isPC()) {
+        if (util.isPC()) {
             this.addMargin = true
         } else {
             this.addMargin = false
@@ -83,7 +73,7 @@ export default {
 
     computed: {
         pageStyle () {
-            return isPC() ? { marginRight: '-17px' } : null
+            return util.isPC() ? { marginRight: '-17px' } : null
         }
     },
 
@@ -103,7 +93,7 @@ export default {
     },
 
     events: {
-        page (name) {
+        'page' (name) {
             var pageWithNav = ['chat', 'contact', 'discover', 'me']
             var pageWithSearch = ['chat', 'contact', 'subContact', 'newFriend']
             if (!name) {
@@ -120,6 +110,11 @@ export default {
         'route-pipe' (_fade) {
             console.log('app fade')
             this.fade = _fade
+        },
+
+        'header-msg-count' (count) {
+            console.log('header-msg-count: ' + count)
+            util.typeof(count) === 'number' && this.$broadcast('set-msg-count', count)
         }
     }
 }
