@@ -5,7 +5,19 @@
 				<span>{{index}}</span>
 			</div>
 			<template v-for="subItem in item">
-				<template v-if="subItem.hrefTo">
+				<div class="alpha-item" :class="{' alpha-item-arrow': !noArrow}" @touchend="toPersonInfo(subItem)">
+					<div class="item-hd" v-if="withIcon">
+						<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
+						<img class="item-img" v-if="subItem.avatar" :src="subItem.avatar">
+					</div>
+					<div class="item-bd">
+						<div class="item-title">{{subItem.title || subItem.name}}</div>
+					</div>
+					<div class="item-ft">
+						<span>{{subItem.intro}}</span>
+					</div>
+				</div>
+				<!-- <template v-if="subItem.hrefTo">
 					<a class="alpha-item" v-link="subItem.hrefTo" :class="{' alpha-item-arrow': !noArrow}">
 						<div class="item-hd" v-if="withIcon">
 							<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
@@ -18,8 +30,8 @@
 							<span>{{subItem.intro}}</span>
 						</div>
 					</a>
-				</template>
-				<template v-else>
+				</template> -->
+				<!-- <template v-else>
 					<div class="alpha-item" >
 						<div class="item-hd" v-if="withIcon">
 							<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
@@ -32,7 +44,7 @@
 							<span>{{subItem.intro}}</span>
 						</div>
 					</div>
-				</template>
+				</template> -->
 			</template>
 		</div>
 	</div>

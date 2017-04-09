@@ -47,7 +47,7 @@ export default {
                 }
             })
             this.$dispatch('header-msg-count', total)
-            console.log(1)
+            // console.log(1)
             return total
         }
     },

@@ -12,7 +12,11 @@
 		</div>
 		<!-- 对话 -->
 		<div class="dialogue-bd">
-			<div class="dialogue-container"></div>
+			<div class="dialogue-container">
+				<template v-for="item in conversation">
+					<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">{{item.content}}</div>
+				</template>
+			</div>
 		</div>
 		<!-- 底部输入框 -->
 		<div class="dialogue-ft flexbox">
@@ -25,7 +29,7 @@
 			</div>
 			<div class="ft-center flex-1">
 				<input type="text" name="msg" id="msg" class="dialogue-input" 
-				v-model="myMsg" 
+				v-model="typingMsg" 
 				v-show="!usingVoice" >
 				<div class="dialogue-voice" v-show="usingVoice">按住&nbsp;说话</div>
 			</div>
@@ -47,6 +51,7 @@ export default {
 	route: {
 		activate (transition) {
             this.$parent.$emit('route-pipe', true)
+            // this.$dispatch('dialogue-get-friend')
             transition.next()
         },
 		deactivate (transition) {
@@ -58,11 +63,27 @@ export default {
 	data () {
 		return {
 			friend: {
-				name: '用户20170401'
+				_uid: '',
+				name: 'test',
+				avatar: ''
+			},
+			me: {
+				name: '',
+				avatar: ''
 			},
 			usingVoice: true,
-			myMsg: '',
-			focused: false
+			typingMsg: '',
+			focused: false,
+			conversation: [
+				{
+					content: '成全 歌词',
+					from: 1
+				},
+				{
+					content: '我对你付出的青春这么多年，换来了一句谢谢你的成全。',
+					from: 0
+				}
+			]
 		}
 	},
 
@@ -79,6 +100,12 @@ export default {
 				path: '/chat'
 			})
 		}
+	},
+
+	events: {
+		'dialogue-friend' (obj) {
+
+		} 
 	},
 
 	transition: {

@@ -113,7 +113,7 @@ export default {
         },
 
         'header-msg-count' (count) {
-            console.log('header-msg-count: ' + count)
+            // console.log('header-msg-count: ' + count)
             util.typeof(count) === 'number' && this.$broadcast('set-msg-count', count)
         }
     }
