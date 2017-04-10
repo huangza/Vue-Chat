@@ -17,34 +17,6 @@
 						<span>{{subItem.intro}}</span>
 					</div>
 				</div>
-				<!-- <template v-if="subItem.hrefTo">
-					<a class="alpha-item" v-link="subItem.hrefTo" :class="{' alpha-item-arrow': !noArrow}">
-						<div class="item-hd" v-if="withIcon">
-							<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
-							<img class="item-img" v-if="subItem.avatar" :src="subItem.avatar">
-						</div>
-						<div class="item-bd">
-							<div class="item-title">{{subItem.title}}</div>
-						</div>
-						<div class="item-ft">
-							<span>{{subItem.intro}}</span>
-						</div>
-					</a>
-				</template> -->
-				<!-- <template v-else>
-					<div class="alpha-item" >
-						<div class="item-hd" v-if="withIcon">
-							<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
-							<img class="item-img" v-if="subItem.avatar" :src="subItem.avatar">
-						</div>
-						<div class="item-bd">
-							<div class="item-title">{{subItem.title}}</div>
-						</div>
-						<div class="item-ft">
-							<span>{{subItem.intro}}</span>
-						</div>
-					</div>
-				</template> -->
 			</template>
 		</div>
 	</div>
@@ -81,6 +53,18 @@ export default {
 	data () {
 		return {
 			type: this.initialType.split('-')
+		}
+	},
+
+	methods: {
+		toPersonInfo (subItem) {
+			let id = subItem._uid
+			// this.$parent.$emit('to-personinfo', id)
+			// 将数据存在localStorage
+			util.setLocal('chatfriend', id)
+			this.$router.go({
+				path: '/contact/personinfo'
+			})
 		}
 	}
 }

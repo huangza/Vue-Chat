@@ -13,7 +13,12 @@ export default {
 		}
 	},
 	'/contact': {
-		component: Contact
+		component: Contact,
+		subRoutes: {
+			'/personinfo': {
+				component: require('./components/PersonInfo')
+			}
+		}
 	},
 	'/discover': {
 		component: Discover

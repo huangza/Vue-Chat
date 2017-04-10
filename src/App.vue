@@ -32,9 +32,9 @@ if(window.addEventListener) {
             window.scrollTo(0, 1);
         }, 0);
     });
-    window.addEventListener("click", function(event){
-        console.log(event.target);
-    });
+    // window.addEventListener("click", function(event){
+    //     console.log(event.target);
+    // });
 }
 
 export default {

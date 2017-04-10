@@ -48,19 +48,6 @@
 }
 // color
 
-// input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
-//     color:    #666;
-// }
-// input:-moz-placeholder, textarea:-moz-placeholder { 
-//     color:    #666;
-// }
-// input::-moz-placeholder, textarea::-moz-placeholder { 
-//     color:    #666;
-// }
-// input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
-//     color:    #666;
-// }
-
 // border
 .brd-top {
 	position: relative;
@@ -166,6 +153,19 @@
 // }
 
 /* router-view transition effect */
+.effect {
+    opacity: 1;
+    transition: all .3s ease;
+}
+.effect--30 {
+    display: none;
+    opacity: 0;
+    transform: translate3d(-30%, 0, 0);
+}
+.effect--50 {
+    opacity: 0;
+    transform: translate3d(-50%, 0, 0);
+}
 .cover-transition {
     transition: all .35s ease
     opacity: 1

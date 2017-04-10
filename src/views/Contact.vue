@@ -1,11 +1,12 @@
 <template>
-    <div class="wrapper effect">
+    <div class="wrapper effect" :class="{'effect--30': fade}">
     	<search-bar></search-bar>
 	    <div class="list">
 	    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
 	    	<alpha-list :initial-type="contactListType" :initial-list="contactList"></alpha-list>
 	    </div>
     </div>
+    <router-view keep-alive transition="cover"></router-view>
 </template>
 
 <script>
@@ -79,8 +80,36 @@ export default {
     		friends: [],
     		user: this.initialUser,
     		apiUrl: '/api/contact',
-    		apiUrl_PROD: './static/mock/data.json'
+    		apiUrl_PROD: './static/mock/data.json',
+            fade: false
     	}
+    },
+
+    events: {
+        'route-pipe' (_fade) {
+            this.fade = _fade
+            this.$parent.$emit('route-pipe', _fade)
+        },
+        'to-personinfo' (index) {
+            var fields = ['_uid', 'name', 'vcid', 'region', 'avatar']
+            // console.log('*No: ' + index)
+            if (util.typeof(index) === 'string') {
+                var res = this.friends.filter(function(item){
+                    if (item._uid === index) {
+                        return item
+                    }
+                })[0]
+                var person = {};
+                for(var k in res) {
+                    if (res.hasOwnProperty(k) && fields.indexOf(k) > -1) {
+                        person[k] = res[k]
+                    }
+                }
+                // console.log('contact', person)
+                // console.log('contact', new Date())
+                this.$broadcast('getPersonInfo', person)
+            }
+        }
     },
 
     methods: {
