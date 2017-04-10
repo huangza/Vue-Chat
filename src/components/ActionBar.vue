@@ -12,7 +12,7 @@
              class="action-bar_item"
              v-for="a in actions">
                 <span class="nav-links_icon">
-                    <i class="fa" :class="a.icon" aria-hidden="true"></i>
+                    <i class="iconfont" :class="a.icon" aria-hidden="true"></i>
                 </span>
                 <p class="nav-links_label" v-text="a.label"></p>
             </li>
@@ -33,17 +33,17 @@ export default {
             actions: [
                 {
                     label: "发起群聊",
-                    icon: "fa-comments",
+                    icon: "icon-tips-xiaoxi",
                     link: "#"
                 },
                 {
                     label: "添加",
-                    icon: "fa-plus",
+                    icon: "icon-tips-add-friend",
                     link: "#"
                 },
                 {
                     label: "收付款",
-                    icon: "fa-rmb",
+                    icon: "icon-tips-fukuan",
                     link: "#"
                 },
             ],
@@ -67,6 +67,7 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../assets/css/com/mixin.styl'
 .vc-action
     position: relative
     right: 21px
@@ -85,6 +86,7 @@ export default {
         top: 50px
         right: -10px
         transform-origin: 90% 0
+        z_index('p')
         &:before
             content: ""
             width: 0
@@ -117,13 +119,15 @@ export default {
         width: 16px
         margin-right: 10px
         text-align: center
+    .nav-links_label
+        font-size: 14px
     .action-bar_mask
         position: absolute
         width: 6.4rem
         height: 11.38rem
         right: -21px
         top: 44px
-        z-index: 109
+        z_index('m')
 .tips-open
     opacity: 1
     transition: initial

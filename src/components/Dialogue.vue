@@ -14,7 +14,16 @@
 		<div class="dialogue-bd">
 			<div class="dialogue-container">
 				<template v-for="item in conversation">
-					<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">{{item.content}}</div>
+					<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">
+						<div class="dialogue-img">
+							<img :src="item.from > 0 ? me.avatar : friend.avatar">
+						</div>
+						<div class="dialogue-msg">
+							<div class="dialogue-msg-txt" v-if="item.type === 1">{{item.content}}</div>
+							<img :src="item.content" class="dialogue-msg-emoji" v-if="item.type === 2">
+							<img :src="item.content" class="dialogue-msg-img" v-if="item.type === 3">
+						</div>
+					</div>
 				</template>
 			</div>
 		</div>
@@ -63,25 +72,28 @@ export default {
 	data () {
 		return {
 			friend: {
-				_uid: '',
-				name: 'test',
-				avatar: ''
+				_uid: '0000000000000004',
+				name: '周杰伦',
+				avatar: './static/images/chat/avatar-yellow.jpg'
 			},
 			me: {
-				name: '',
-				avatar: ''
+				name: 'Andre Huang',
+				avatar: './static/images/chat/avatar-red.jpg'
 			},
 			usingVoice: true,
 			typingMsg: '',
 			focused: false,
 			conversation: [
 				{
-					content: '成全 歌词',
-					from: 1
+					content: '晴天 歌词',
+					from: 1,
+					// 消息类型：1-文字；2-表情；3.图片
+					type: 1
 				},
 				{
-					content: '我对你付出的青春这么多年，换来了一句谢谢你的成全。',
-					from: 0
+					content: '刮风这天我试过握着你手，但偏偏雨渐渐大到我看你不见。',
+					from: 0,
+					type: 1
 				}
 			]
 		}
@@ -162,12 +174,14 @@ export default {
 		line-height: @height
 	}
 	.hd-left {
+		width: 52px
 		padding-left: 2 * $gap
+		text-align: left
 		span {
 			display: inline-block
 			text-align: left
 			vertical-align: middle
-			font-size: 16px
+			font-size: 15px
 		}
 	}
 	.hd-center {
@@ -175,7 +189,9 @@ export default {
 		text-align: center
 	}
 	.hd-right {
+		width: 52px
 		padding-right: ($gap / 2)
+		text-align: right
 		span {
 			font-size: 18px
 			text-align: right
@@ -236,6 +252,62 @@ export default {
 		display: inline-block
 		font-size: 28px
 		color: #999
+	}
+	.dialogue-item {
+		width: 100%
+		padding: $gap
+	}
+	.dialogue-img {
+		width: 34px
+		height: @width
+		img {
+			width: 100%
+			height: 100%
+		}
+	}
+	.dialogue-msg-txt {
+		font-size: 14px
+		line-height: 20px
+		padding: 7px
+		max-width: 220px
+		border-radius: 5px
+	}
+	.dialogue-left,
+	.dialogue-right {
+		position: relative
+	}
+	.dialogue-left {
+		.dialogue-msg {
+			width: 100%
+			padding-left: ($gap * 2 + 34) 
+			text-align: left
+		}
+		.dialogue-msg-txt {
+			display: inline-block
+			background: #fff
+		}
+		.dialogue-img {
+			position: absolute
+			top: $gap
+			left: $gap
+		}
+	}
+	.dialogue-right {
+		.dialogue-msg {
+			width: 100%
+			padding-right: ($gap * 2 + 34) 
+			text-align: right
+		}
+		.dialogue-msg-txt {
+			display: inline-block
+			background: #a2e759
+			text-align: left
+		}
+		.dialogue-img {
+			position: absolute
+			top: $gap
+			right: $gap
+		}
 	}
 }
 </style>
