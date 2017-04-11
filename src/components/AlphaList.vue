@@ -59,11 +59,19 @@ export default {
 	methods: {
 		toPersonInfo (subItem) {
 			let id = subItem._uid
-			// this.$parent.$emit('to-personinfo', id)
-			// 将数据存在localStorage
-			util.setLocal('chatfriend', id)
+			let _path = '/contact/personinfo'
+			if (!id) {
+				if (subItem.hrefTo) {
+					path = subItem.hrefTo
+				} else {
+					return
+				}
+			} else {
+				// 将数据存在localStorage
+				util.setLocal('contactfriend', id)
+			}
 			this.$router.go({
-				path: '/contact/personinfo'
+				path: _path
 			})
 		}
 	}
@@ -190,12 +198,12 @@ $iconHeight = 24px
 		display: inline-block
 .alpha-list-ava
 	.item-bd
-		height: $avatarHeight
+		height: $contactAvatar
 		line-height: @height
 	.item-img,
 	.item-icon
-		width: $avatarHeight
+		width: $contactAvatar
 		height: @width
 		line-height: @height
-		border-radius: ($avatarHeight / 10)
+		border-radius: ($contactAvatar / 10)
 </style>

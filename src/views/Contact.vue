@@ -50,28 +50,28 @@ export default {
 						icon: ' item-icon-newfriend',
 						avatar: '',
 						intro: '',
-						hrefTo: '',
+						hrefTo: '/contact/add-friends',
 						category: 'func'
 					},{
 						title: '群聊',
 						icon: ' item-icon-group',
 						avatar: '',
 						intro: '',
-						hrefTo: '',
+						hrefTo: '/contact/group-chat',
 						category: 'func'
 					},{
 						title: '标签',
 						icon: ' item-icon-tag',
 						avatar: '',
 						intro: '',
-						hrefTo: '',
+						hrefTo: '/contact/tag',
 						category: 'func'
 					},{
 						title: '公众号',
 						icon: ' item-icon-public',
 						avatar: '',
 						intro: '',
-						hrefTo: '',
+						hrefTo: '/contact/public',
 						category: 'func'
 					}
 	    		]

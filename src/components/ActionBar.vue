@@ -10,7 +10,8 @@
          :class="tipsClass">
             <li
              class="action-bar_item"
-             v-for="a in actions">
+             v-for="a in actions"
+             @touchend="goPage(a.hrefTo)">
                 <span class="nav-links_icon">
                     <i class="iconfont" :class="a.icon" aria-hidden="true"></i>
                 </span>
@@ -34,17 +35,17 @@ export default {
                 {
                     label: "发起群聊",
                     icon: "icon-tips-xiaoxi",
-                    link: "#"
+                    hrefTo: "/contact/group-chat"
                 },
                 {
                     label: "添加",
                     icon: "icon-tips-add-friend",
-                    link: "#"
+                    hrefTo: "/contact/add-friends"
                 },
                 {
                     label: "收付款",
                     icon: "icon-tips-fukuan",
-                    link: "#"
+                    hrefTo: "/chat/receive-and-pay"
                 },
             ],
             showList: false
@@ -61,6 +62,14 @@ export default {
     methods: {
         toggleList () {
             this.showList = !this.showList
+        },
+        goPage (_path) {
+            if (util.typeof(_path) === 'string') {
+                this.showList = false
+                this.$router.go({
+                    path: _path
+                })
+            }
         }
     }
 }

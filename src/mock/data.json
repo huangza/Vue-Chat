@@ -1,6 +1,7 @@
 {
     "chat": [
         {
+            "_uid": "0000000000000001",
             "name": "Uzumaki Naruto",
             "avatar": "./static/images/chat/avatar-yellow.jpg",
             "latestWord": "笔直向前，说到做到",
@@ -9,6 +10,7 @@
             "msgCount": 2
         },
         {
+            "_uid": "0000000000000002",
             "name": "樱木花道",
             "avatar": "./static/images/chat/avatar-red.jpg",
             "latestWord": "我果然是个天才",
@@ -17,6 +19,7 @@
             "msgCount": 0
         },
         {
+            "_uid": "0000000000000003",
             "name": "Dwyane Wade",
             "avatar": "./static/images/chat/avatar-blue.jpg",
             "latestWord": "This is my house",
@@ -25,6 +28,7 @@
             "msgCount": 0
         },
         {
+            "_uid": "0000000000000004",
             "name": "周杰伦",
             "avatar": "./static/images/chat/avatar-green.jpg",
             "latestWord": "哎哟，不错喔~",

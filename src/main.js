@@ -30,7 +30,7 @@ router.start(app, 'app')
 
 // 重定向
 router.redirect({
-    '*': '/chat'
+    '/': '/chat'
 })
 
 // 过滤器

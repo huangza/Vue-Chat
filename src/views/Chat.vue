@@ -13,6 +13,11 @@
 import ChatList from 'components/ChatList'
 import SearchBar from 'components/SearchBar'
 
+window.addEventListener('click', function(event){
+    // console.dir(event.target)
+    // alert(event.target.nodeName)
+})
+
 export default {
 
     created () {
@@ -83,6 +88,25 @@ export default {
         },
         'to-dialogue' (index) {
             console.log('*No: ' + index)
+            var fields = ['_uid', 'name', 'avatar']
+            // console.log('*No: ' + index)
+            if (util.typeof(index) === 'string') {
+                var res = this.friends.filter(function(item){
+                    if (item._uid === index) {
+                        return item
+                    }
+                })[0]
+                console.log(res)
+                var person = {};
+                for(var k in res) {
+                    if (res.hasOwnProperty(k) && fields.indexOf(k) > -1) {
+                        person[k] = res[k]
+                    }
+                }
+                console.log('contact', person)
+                // console.log('contact', new Date())
+                this.$broadcast('getChatFriend', person)
+            }
         }
     },
 }

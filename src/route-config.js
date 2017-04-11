@@ -25,5 +25,9 @@ export default {
 	},
 	'/me': {
 		component: Me
+	},
+	'*': {
+		name: '404',
+		component: require('./views/404')
 	}
 }

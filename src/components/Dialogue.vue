@@ -63,6 +63,13 @@ export default {
             // this.$dispatch('dialogue-get-friend')
             transition.next()
         },
+        data (transition) {
+            setTimeout( () => {
+                transition.next({})
+                // console.log('dia data ', util.getLocal('chatfriend').length)
+	            this.$parent.$emit('to-dialogue', util.getLocal('chatfriend'))
+            } )
+        },
 		deactivate (transition) {
             this.$parent.$emit('route-pipe', false)
             transition.next()
@@ -108,6 +115,7 @@ export default {
 			this.focused = false
 		},
 		goBack () {
+			util.delLocal('chatfriend')
 			this.$router.go({
 				path: '/chat'
 			})
@@ -115,9 +123,12 @@ export default {
 	},
 
 	events: {
-		'dialogue-friend' (obj) {
-
-		} 
+		'getChatFriend' (_person) {
+			console.log('dia', _person)
+			if (util.typeof(_person) === 'object') {
+				this.friend = _person
+			}
+		}
 	},
 
 	transition: {
@@ -258,7 +269,7 @@ export default {
 		padding: $gap
 	}
 	.dialogue-img {
-		width: 34px
+		width: $chatAvatar
 		height: @width
 		img {
 			width: 100%
@@ -266,11 +277,22 @@ export default {
 		}
 	}
 	.dialogue-msg-txt {
-		font-size: 14px
-		line-height: 20px
-		padding: 7px
+		position: relative
+		font-size: 15px
+		line-height: 22px
+		padding: 12px
 		max-width: 220px
 		border-radius: 5px
+		&:before {
+			content: ' '
+			position: absolute
+			top: $gap
+			width: 0
+			height: 0
+			border-width: $gap
+			border-color: transparent
+			border-style: solid
+		}
 	}
 	.dialogue-left,
 	.dialogue-right {
@@ -279,12 +301,16 @@ export default {
 	.dialogue-left {
 		.dialogue-msg {
 			width: 100%
-			padding-left: ($gap * 2 + 34) 
+			padding-left: ($gap * 2 + $chatAvatar) 
 			text-align: left
 		}
 		.dialogue-msg-txt {
 			display: inline-block
 			background: #fff
+			&:before {
+				left: -($gap * 2)
+				border-right-color: #fff
+			}
 		}
 		.dialogue-img {
 			position: absolute
@@ -295,13 +321,17 @@ export default {
 	.dialogue-right {
 		.dialogue-msg {
 			width: 100%
-			padding-right: ($gap * 2 + 34) 
+			padding-right: ($gap * 2 + $chatAvatar) 
 			text-align: right
 		}
 		.dialogue-msg-txt {
 			display: inline-block
 			background: #a2e759
 			text-align: left
+			&:before {
+				right: -($gap * 2)
+				border-left-color: #a2e759
+			}
 		}
 		.dialogue-img {
 			position: absolute

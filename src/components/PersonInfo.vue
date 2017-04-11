@@ -32,7 +32,7 @@ export default {
         data (transition) {
             setTimeout( () => {
                 transition.next({})
-	            this.$parent.$emit('to-personinfo', util.getLocal('chatfriend'))
+	            this.$parent.$emit('to-personinfo', util.getLocal('contactfriend'))
                 // console.log('data: ' + new Date())
             } )
         },
@@ -58,7 +58,7 @@ export default {
 
 	methods: {
 		goBack () {
-			util.delLocal('chatfriend')
+			util.delLocal('contactfriend')
 			this.$router.go({
 				path: '/contact'
 			})
