@@ -89,8 +89,8 @@
 			try {
 				localStorage.setItem('test', 'testValue')
 				localStorage.removeItem('test')
-				// return true
-				return false	// debug
+				return true
+				// return false	// debug
 			} catch (e) {
 				// alert('无痕中'+ e.code)
 				return false

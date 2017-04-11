@@ -29,6 +29,11 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       inject: true
+    }),
+    new webpack.ProvidePlugin({
+      "$":'webpack-zepto',
+      "zepto":"zepto",
+      "window.zepto":"webpack-zepto"
     })
   ]
 })

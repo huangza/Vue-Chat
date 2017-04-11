@@ -51,6 +51,12 @@
 </template>
 
 <script>
+
+setTimeout(function(){
+	alert($('.hd-left').length + ' - ' + $('.hd-left').scrollTop() + ' - ' + $('.hd-left').scrollLeft() + ' - ' + $('.hd-left').width() + ' - ' + $('.hd-left').height())
+	// $('.dialogue-hd').css('background', 'pink')
+},1000)
+
 export default {
 
 	ready () {
@@ -66,7 +72,6 @@ export default {
         data (transition) {
             setTimeout( () => {
                 transition.next({})
-                // console.log('dia data ', util.getLocal('chatfriend').length)
 	            this.$parent.$emit('to-dialogue', util.getLocal('chatfriend'))
             } )
         },
@@ -78,18 +83,18 @@ export default {
 
 	data () {
 		return {
-			friend: {
-				_uid: '0000000000000004',
-				name: '周杰伦',
-				avatar: './static/images/chat/avatar-yellow.jpg'
-			},
+			// friend: {
+			// 	_uid: '0000000000000004',
+			// 	name: '周杰伦',
+			// 	avatar: './static/images/chat/avatar-yellow.jpg'
+			// },
+			friend: {},
 			me: {
 				name: 'Andre Huang',
 				avatar: './static/images/chat/avatar-red.jpg'
 			},
 			usingVoice: true,
 			typingMsg: '',
-			focused: false,
 			conversation: [
 				{
 					content: '晴天 歌词',

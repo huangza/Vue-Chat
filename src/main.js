@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import routerMap from './route-config'
 import App from './App'
 import VueResouce from 'vue-resource'
+import zepto from 'webpack-zepto'
 import fastclick from 'fastclick'
 require('assets/js/util.js')
 
@@ -62,3 +63,4 @@ Vue
 // 挂载到全局对象中
 window.router = router
 window.Vue = Vue
+window.$ = zepto
