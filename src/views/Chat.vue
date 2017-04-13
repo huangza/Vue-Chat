@@ -13,12 +13,6 @@
 import ChatList from 'components/ChatList'
 import SearchBar from 'components/SearchBar'
 
-window.addEventListener('touchend', function(event){
-    alert($(event.target)[0].className)
-    // console.log($(event.target)[0].className)
-    // alert(event.target.nodeName)
-    // alert(event.target.nodeName)
-})
 
 export default {
 

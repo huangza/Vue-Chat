@@ -52,11 +52,6 @@
 
 <script>
 
-setTimeout(function(){
-	alert($('.hd-left').length + ' - ' + $('.hd-left').scrollTop() + ' - ' + $('.hd-left').scrollLeft() + ' - ' + $('.hd-left').width() + ' - ' + $('.hd-left').height())
-	// $('.dialogue-hd').css('background', 'pink')
-},1000)
-
 export default {
 
 	ready () {
@@ -165,6 +160,7 @@ export default {
 		padding: $gap
 		color: #fff
 	    background: linear-gradient(180deg,#303036,#3c3b40)
+	    background: pink
 		z_index('sn')
 	}
 	.dialogue-bd {
