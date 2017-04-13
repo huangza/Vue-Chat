@@ -43,13 +43,7 @@ export default {
 
     created () {},
 
-    ready () {
-        if (util.isPC()) {
-            this.addMargin = true
-        } else {
-            this.addMargin = false
-        }
-    },
+    ready () {},
 
     components: {
         HeaderBar,
@@ -67,15 +61,8 @@ export default {
                 "hrefTo": "/me",
                 "category": "A"
             }],
-            addMargin: false,
             showFooter: true,
             fade: false
-        }
-    },
-
-    computed: {
-        pageStyle () {
-            return util.isPC() ? { marginRight: '-17px' } : null
         }
     },
 

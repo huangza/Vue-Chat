@@ -59,10 +59,10 @@ export default {
 	methods: {
 		toPersonInfo (subItem) {
 			let id = subItem._uid
-			let _path = '/contact/personinfo'
+			var _path = '/contact/personinfo'
 			if (!id) {
 				if (subItem.hrefTo) {
-					path = subItem.hrefTo
+					_path = subItem.hrefTo
 				} else {
 					return
 				}
