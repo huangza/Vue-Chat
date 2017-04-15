@@ -33,7 +33,6 @@
 				<label class="dialogue-btn dialogue-switch iconfont"
 				 :class="{'icon-dialogue-voice': usingVoice, 'icon-dialogue-jianpan': !usingVoice}"
 				 @touchend="toggleInputVoice"
-				 for="msg"
 				 ></label>
 			</div>
 			<div class="ft-center flex-1">
@@ -160,8 +159,8 @@ export default {
 		padding: $gap
 		color: #fff
 	    background: linear-gradient(180deg,#303036,#3c3b40)
-	    background: pink
 		z_index('sn')
+		transform: translateZ(1px)
 	}
 	.dialogue-bd {
 		width: 100%

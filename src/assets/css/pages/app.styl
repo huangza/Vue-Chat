@@ -45,6 +45,7 @@ body {
 .footer {
     background-color: #fff;
     z_index('n');
+    z-index: 3;
 }
 .header,
 .header-sub,
@@ -61,7 +62,7 @@ body {
     // border-bottom: 1px solid #b7b7b7;
     color: #fff;
     background: linear-gradient(180deg,#303036,#3c3b40);
-    & ~ .page {
+    & ~ .page>div {
         padding-top: $header-h;
     }
 }
@@ -70,7 +71,7 @@ body {
     bottom: 0;
     border-top: 1px solid #b7b7b7;
     background: #f2f1f0;
-    & ~ .page {
+    & ~ .page>div {
         padding-bottom: $footer-h;
     }
 }
@@ -95,6 +96,7 @@ body {
     overflow: hidden;
 }
 .noscroll-inner {
+    position: relative;
     width: 110%;
     height: 100%;
     overflow-x: hidden;
