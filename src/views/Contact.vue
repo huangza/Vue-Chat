@@ -15,8 +15,8 @@ import AlphaList from 'components/AlphaList'
 export default {
 
 	created () {
-		this.getFriends()
-		// this.getFriends_PROD()
+		// this.getFriends()
+		this.getFriends_PROD()
 	},
 
     route: {

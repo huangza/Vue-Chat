@@ -8,7 +8,7 @@
 					</div>
 					<div class="item-bd">
 						<div class="item-title">{{list[0].name}}</div>
-						<div class="item-txt">微信号:&nbsp;{{list[0].chatID}}</div>
+						<div class="item-txt">微信号:&nbsp;{{list[0].vcid}}</div>
 					</div>
 					<div class="item-ft"></div>
 				</a>

@@ -33,9 +33,10 @@ export default {
 			type: 'user',
 			user: [
 				{
+					_uid: '0000000000000000',
 					name: 'Andre爱喝抹茶拿铁',
-					avatar: './static/images/chat/avatar-red.jpg',
-					chatID: 'A_Dreamliker',
+	                avatar: "./static/profile/user/avatar.jpg",
+					vcid: 'A_Dreamliker',
 					avatarRight: false
 				}
 			],

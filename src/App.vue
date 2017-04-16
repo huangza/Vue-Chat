@@ -56,7 +56,7 @@ export default {
             user: [{
                 "title": "Andre Huang",
                 "icon": "",
-                "avatar": "./static/images/chat/avatar-red.jpg",
+                "avatar": "./static/profile/user/avatar.jpg",
                 "intro": "",
                 "hrefTo": "/me",
                 "category": "A"

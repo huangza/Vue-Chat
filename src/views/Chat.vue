@@ -17,8 +17,8 @@ import SearchBar from 'components/SearchBar'
 export default {
 
     created () {
-        this.getFriends();
-        // this.getFriends_PROD();
+        // this.getFriends();
+        this.getFriends_PROD();
     },
 
     props: ['initialUser'],

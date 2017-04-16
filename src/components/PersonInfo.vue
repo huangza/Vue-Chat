@@ -63,18 +63,7 @@ export default {
 				path: '/contact'
 			})
 		}
-	},
-
-	// transition: {
-	// 	'cover' : {
-	// 		enter () {
-	// 			console.log('cover-enter-')
-	// 		},
-	// 		leave () {
-	// 			console.log('cover-leave')
-	// 		}
-	// 	}
-	// }
+	}
 }
 </script>
 

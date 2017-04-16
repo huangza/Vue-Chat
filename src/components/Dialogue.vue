@@ -11,20 +11,22 @@
 			</div>
 		</div>
 		<!-- 对话 -->
-		<div class="dialogue-bd">
-			<div class="dialogue-container">
-				<template v-for="item in conversation">
-					<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">
-						<div class="dialogue-img">
-							<img :src="item.from > 0 ? me.avatar : friend.avatar">
+		<div class="dialogue-bd noscroll-outer">
+			<div id="conversation" class="dialogue-container noscroll-inner">
+				<div class="wrapper">
+					<template v-for="item in conversation">
+						<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">
+							<div class="dialogue-img">
+								<img :src="item.from > 0 ? me.avatar : friend.avatar">
+							</div>
+							<div class="dialogue-msg">
+								<div class="dialogue-msg-txt" v-if="item.type === 1">{{item.content}}</div>
+								<img :src="item.content" class="dialogue-msg-emoji" v-if="item.type === 2">
+								<img :src="item.content" class="dialogue-msg-img" v-if="item.type === 3">
+							</div>
 						</div>
-						<div class="dialogue-msg">
-							<div class="dialogue-msg-txt" v-if="item.type === 1">{{item.content}}</div>
-							<img :src="item.content" class="dialogue-msg-emoji" v-if="item.type === 2">
-							<img :src="item.content" class="dialogue-msg-img" v-if="item.type === 3">
-						</div>
-					</div>
-				</template>
+					</template>
+				</div>
 			</div>
 		</div>
 		<!-- 底部输入框 -->
@@ -38,7 +40,8 @@
 			<div class="ft-center flex-1">
 				<input type="text" name="msg" id="msg" class="dialogue-input" 
 				v-model="typingMsg" 
-				v-show="!usingVoice" >
+				v-show="!usingVoice" 
+				@keyup.enter="sendMsg">
 				<div class="dialogue-voice" v-show="usingVoice">按住&nbsp;说话</div>
 			</div>
 			<div class="ft-right">
@@ -77,21 +80,17 @@ export default {
 
 	data () {
 		return {
-			// friend: {
-			// 	_uid: '0000000000000004',
-			// 	name: '周杰伦',
-			// 	avatar: './static/images/chat/avatar-yellow.jpg'
-			// },
 			friend: {},
 			me: {
 				name: 'Andre Huang',
-				avatar: './static/images/chat/avatar-red.jpg'
+                avatar: "./static/profile/user/avatar.jpg"
 			},
-			usingVoice: true,
+			usingVoice: false,
 			typingMsg: '',
 			conversation: [
 				{
 					content: '晴天 歌词',
+					// 消息来源：1-用户自己；0-好友
 					from: 1,
 					// 消息类型：1-文字；2-表情；3.图片
 					type: 1
@@ -113,6 +112,14 @@ export default {
 		offFocus () {
 			this.focused = false
 		},
+		sendMsg () {
+			this.conversation.push({
+				content: this.typingMsg,
+				from: 1,
+				type: 1
+			})
+			this.typingMsg = ''
+		},
 		goBack () {
 			util.delLocal('chatfriend')
 			this.$router.go({
@@ -130,15 +137,11 @@ export default {
 		}
 	},
 
-	transition: {
-		'cover' : {
-			enter () {
-				console.log('cover-enter-')
-			},
-			leave () {
-				console.log('cover-leave')
-			}
-		}
+	watch: {
+	    conversation () {
+	    	console.log('change')
+	        document.getElementById('conversation').scrollTop = document.getElementById('conversation').scrollHeight;
+	    }
 	}
 }
 </script>
