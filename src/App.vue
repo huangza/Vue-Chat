@@ -9,8 +9,10 @@
             <tab-bar></tab-bar>
         </div>
     </footer>
-    <div class="page" :style="pageStyle">
-        <router-view keep-alive :initial-user="user"></router-view>
+    <div class="page noscroll-outer">
+        <div class="noscroll-inner">
+            <router-view :initial-user="user"></router-view>
+        </div>
     </div>
 </template>
 
@@ -32,32 +34,16 @@ if(window.addEventListener) {
             window.scrollTo(0, 1);
         }, 0);
     });
-    window.addEventListener("click", function(event){
-        console.log(event.target);
-    });
-}
-
-function isPC() {  
-    var userAgentInfo = navigator.userAgent;  
-    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"]; 
-    var flag = true;  
-    for (var v = 0, len = Agents.length; v < len; v++) {  
-       if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
-    }  
-    return flag;  
+    // window.addEventListener("click", function(event){
+    //     console.log(event.target);
+    // });
 }
 
 export default {
 
     created () {},
 
-    ready () {
-        if (isPC()) {
-            this.addMargin = true
-        } else {
-            this.addMargin = false
-        }
-    },
+    ready () {},
 
     components: {
         HeaderBar,
@@ -70,20 +56,13 @@ export default {
             user: [{
                 "title": "Andre Huang",
                 "icon": "",
-                "avatar": "./static/images/chat/avatar-red.jpg",
+                "avatar": "./static/profile/user/avatar.jpg",
                 "intro": "",
                 "hrefTo": "/me",
                 "category": "A"
             }],
-            addMargin: false,
             showFooter: true,
             fade: false
-        }
-    },
-
-    computed: {
-        pageStyle () {
-            return isPC() ? { marginRight: '-17px' } : null
         }
     },
 
@@ -103,7 +82,7 @@ export default {
     },
 
     events: {
-        page (name) {
+        'page' (name) {
             var pageWithNav = ['chat', 'contact', 'discover', 'me']
             var pageWithSearch = ['chat', 'contact', 'subContact', 'newFriend']
             if (!name) {
@@ -120,6 +99,11 @@ export default {
         'route-pipe' (_fade) {
             console.log('app fade')
             this.fade = _fade
+        },
+
+        'header-msg-count' (count) {
+            // console.log('header-msg-count: ' + count)
+            util.typeof(count) === 'number' && this.$broadcast('set-msg-count', count)
         }
     }
 }

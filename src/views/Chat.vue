@@ -3,20 +3,22 @@
         <search-bar></search-bar>
         <div class="chat-list">
             <chat-list :initial-list="friends"></chat-list>
+            <span v-show="needed">{{newMsgCount}}</span>
         </div>
     </div>
-    <router-view keep-alive></router-view>
+    <router-view keep-alive transition="cover"></router-view>
 </template>
 
 <script>
 import ChatList from 'components/ChatList'
 import SearchBar from 'components/SearchBar'
 
+
 export default {
 
     created () {
-        this.getFriends();
-        // this.getFriends_PROD();
+        // this.getFriends();
+        this.getFriends_PROD();
     },
 
     props: ['initialUser'],
@@ -37,6 +39,20 @@ export default {
         }
     },
 
+    computed: {
+        newMsgCount () {
+            var total = 0
+            this.friends.forEach(function(item){
+                if (item.newMsg && item.msgCount > 0) {
+                    total += item.msgCount
+                }
+            })
+            this.$dispatch('header-msg-count', total)
+            // console.log(1)
+            return total
+        }
+    },
+
     components: {
         ChatList,
         SearchBar
@@ -48,6 +64,7 @@ export default {
             vm.$http.get(vm.apiUrl)
                 .then( (res) => {
                     vm.$set('friends', res.body.data)
+                    // console.log(this.friends)
                 } )
         },
         getFriends_PROD () {
@@ -67,8 +84,27 @@ export default {
         },
         'to-dialogue' (index) {
             console.log('*No: ' + index)
+            var fields = ['_uid', 'name', 'avatar']
+            // console.log('*No: ' + index)
+            if (util.typeof(index) === 'string') {
+                var res = this.friends.filter(function(item){
+                    if (item._uid === index) {
+                        return item
+                    }
+                })[0]
+                console.log(res)
+                var person = {};
+                for(var k in res) {
+                    if (res.hasOwnProperty(k) && fields.indexOf(k) > -1) {
+                        person[k] = res[k]
+                    }
+                }
+                console.log('contact', person)
+                // console.log('contact', new Date())
+                this.$broadcast('getChatFriend', person)
+            }
         }
-    }
+    },
 }
 </script>
 

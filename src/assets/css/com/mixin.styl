@@ -1,3 +1,4 @@
+// old one
 z_index(mode) {
 	if mode is a 'unit' {
 		z-index: mode
@@ -32,13 +33,24 @@ z_index(mode) {
 	}
 }
 
-trans-scaleY(s)
+// new plan
+// z_index(elem) {
+// 	if (elem == 'header' && elem == 'footer') {
+// 		z-index: 3
+// 	} else if (elem == 'page') {
+// 		z-index: 2
+// 	}
+// }
+
+trans-scaleY(s) {
 	-webkit-transform: scaleY(s)
 	transform: scaleY(s)
+}
 
-trans-origin(exp)
+trans-origin(exp) {
 	-webkit-transform-origin: exp
 	transform-origin: exp
+}
 
 // placeholder-color(clr)
 // 	&::-webkit-input-placeholder

@@ -13,12 +13,21 @@ export default {
 		}
 	},
 	'/contact': {
-		component: Contact
+		component: Contact,
+		subRoutes: {
+			'/personinfo': {
+				component: require('./components/PersonInfo')
+			}
+		}
 	},
 	'/discover': {
 		component: Discover
 	},
 	'/me': {
 		component: Me
+	},
+	'*': {
+		name: '404',
+		component: require('./views/404')
 	}
 }

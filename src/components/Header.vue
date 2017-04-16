@@ -16,13 +16,22 @@ export default {
 	data () {
 		return {
 			msgTip: {
-				hasNew: true,
-				count: 100
+				hasNew: false,
+				count: 0
 			}
 		}
 	},
 	components: {
 		ActionBar
+	},
+
+	events: {
+		'set-msg-count' (count) {
+			if (util.typeof(count) === 'number') {
+				this.msgTip.hasNew = count > 0 ? true : false;
+				this.msgTip.count = count
+			}
+		}
 	}
 }
 </script>
