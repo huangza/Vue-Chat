@@ -55,7 +55,13 @@ export default {
 </script>
 
 <style lang="stylus">
+@import "../assets/css/com/mixin.styl"
+@import "../assets/css/com/value.styl"
 .vc-tabbar{
+    position: relative;
+    z_index('n');
+    border-top: 1px solid #b7b7b7;
+    background: #f2f1f0;
     .nav-links {
         display: -webkit-box;
         display: -ms-flexbox;

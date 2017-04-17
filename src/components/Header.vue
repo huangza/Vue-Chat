@@ -37,7 +37,11 @@ export default {
 </script>
 
 <style lang="stylus">
+@import "../assets/css/com/mixin.styl"
+@import "../assets/css/com/value.styl"
 .vc-header
+    z_index('n');
+    background: linear-gradient(180deg,#303036,#3c3b40);
 	.action
 		top: 0
 		right: 0

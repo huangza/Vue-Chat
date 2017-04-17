@@ -130,7 +130,7 @@ export default {
 
 	events: {
 		'getChatFriend' (_person) {
-			console.log('dia', _person)
+			// console.log('dia', _person)
 			if (util.typeof(_person) === 'object') {
 				this.friend = _person
 			}
@@ -139,7 +139,7 @@ export default {
 
 	watch: {
 	    conversation () {
-	    	console.log('change')
+	    	// console.log('change')
 	        document.getElementById('conversation').scrollTop = document.getElementById('conversation').scrollHeight;
 	    }
 	}
