@@ -1,7 +1,7 @@
 <template>
     <header class="header t-center">
         <div class="effect" :class="{' effect--50': fade}">
-            <header-bar></header-bar>
+            <header-bar :initial-option="option"></header-bar>
         </div>
     </header>
     <footer class="footer t-center" :class="{'hide': !showFooter}">
@@ -59,6 +59,18 @@ export default {
                 "hrefTo": "/me",
                 "category": "A"
             }],
+            option: {
+                type: 1,
+                title: '微信',
+                backBtn: {
+                    need: false,
+                    url: '',
+                    label: '返回'
+                },
+                action: {
+                    icon: 'icon-more'
+                }
+            },
             showFooter: true,
             fade: false
         }

@@ -79,8 +79,8 @@ export default {
 @import '../assets/css/com/mixin.styl'
 .vc-action
     position: relative
-    right: 21px
-    height: 44px
+    // right: 21px
+    // height: 44px
     .action-bar_open
         display: inline-block
         i {
@@ -92,8 +92,8 @@ export default {
         width: 133px
         padding: 0 15px
         border-radius: 4px
-        top: 50px
-        right: -10px
+        top: 40px
+        right: -8px
         transform-origin: 90% 0
         z_index('p')
         &:before
@@ -107,6 +107,7 @@ export default {
             border-color: transparent transparent #49484b
             border-style: solid
     .action-bar_item
+        line-height: 44px
         text-align: left
         position: relative
         &:not(:last-child):after
@@ -134,8 +135,8 @@ export default {
         position: absolute
         width: 6.4rem
         height: 11.38rem
-        right: -21px
-        top: 44px
+        right: -15px
+        top: 34px
         z_index('m')
 .tips-open
     opacity: 1

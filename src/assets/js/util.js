@@ -15,6 +15,7 @@
 	_util.getCookie = _getCookie
 	_util.delCookie = _delCookie
 	_util.shallowCopy = _shallowCopy
+	_util.extend = _extend
 
 	function _typeof (param) {
 		return Object.prototype.toString.call(param).slice(8, -1).toLowerCase()
@@ -187,6 +188,18 @@
 		return obj;
 	}
 
-	// function _extend()
+	// 最基本的 extend 拓展功能
+	// To be improved
+	function _extend(dest, src) {
+		if (this.typeof(dest) !== 'object' && this.typeof(src) !== 'object') {
+			return null
+		}
+		for(var sKey in src) {
+			if (src.hasOwnProperty(sKey)) {
+				dest[sKey] = src[sKey];
+			}
+		}
+		return dest
+	}
 
 })(window)
