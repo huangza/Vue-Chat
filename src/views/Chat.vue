@@ -1,9 +1,13 @@
 <template>
-    <div class="wrapper effect" :class="{'effect--30': fade}">
-        <search-bar></search-bar>
-        <div class="chat-list">
-            <chat-list :initial-list="friends"></chat-list>
-            <span v-show="needed">{{newMsgCount}}</span>
+    <div class="noscroll-outer">
+        <div class="noscroll-inner">
+            <div class="wrapper effect" :class="{'effect--30': fade}">
+                <search-bar></search-bar>
+                <div class="chat-list">
+                    <chat-list :initial-list="friends"></chat-list>
+                    <span v-show="needed">{{newMsgCount}}</span>
+                </div>
+            </div>
         </div>
     </div>
     <router-view keep-alive transition="cover"></router-view>

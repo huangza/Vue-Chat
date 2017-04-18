@@ -14,6 +14,7 @@
 	_util.setCookie = _setCookie
 	_util.getCookie = _getCookie
 	_util.delCookie = _delCookie
+	_util.shallowCopy = _shallowCopy
 
 	function _typeof (param) {
 		return Object.prototype.toString.call(param).slice(8, -1).toLowerCase()
@@ -174,5 +175,18 @@
 		}
 		return false
 	}
+
+	// 浅复制
+	function _shallowCopy(param) {
+		var obj = {};
+		for(var key in param) {
+			if (param.hasOwnProperty(key)) {
+				obj[key] = param[key];
+			}
+		}
+		return obj;
+	}
+
+	// function _extend()
 
 })(window)

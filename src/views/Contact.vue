@@ -1,10 +1,14 @@
 <template>
-    <div class="wrapper effect" :class="{'effect--30': fade}">
-    	<search-bar></search-bar>
-	    <div class="list">
-	    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
-	    	<alpha-list :initial-type="contactListType" :initial-list="contactList"></alpha-list>
-	    </div>
+    <div class="noscroll-outer">
+        <div class="noscroll-inner">
+            <div class="wrapper effect" :class="{'effect--30': fade}">
+                <search-bar></search-bar>
+                <div class="list">
+                    <alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+                    <alpha-list :initial-type="contactListType" :initial-list="contactList"></alpha-list>
+                </div>
+            </div>
+        </div>
     </div>
     <router-view keep-alive transition="cover"></router-view>
 </template>

@@ -9,10 +9,8 @@
             <tab-bar></tab-bar>
         </div>
     </footer>
-    <div class="page noscroll-outer">
-        <div class="noscroll-inner">
-            <router-view :initial-user="user"></router-view>
-        </div>
+    <div class="page">
+        <router-view :initial-user="user"></router-view>
     </div>
 </template>
 

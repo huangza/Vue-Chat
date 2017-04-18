@@ -45,7 +45,7 @@ body {
 .footer {
     background-color: #fff;
     // z_index('n');
-    // z-index: 3;
+    z-index: 3;
 }
 .header,
 .header-sub,
@@ -62,7 +62,7 @@ body {
     // border-bottom: 1px solid #b7b7b7;
     color: #fff;
     background: linear-gradient(180deg,#303036,#3c3b40);
-    & ~ .page>div {
+    & ~ .page {
         padding-top: $header-h;
     }
 }
@@ -71,7 +71,7 @@ body {
     bottom: 0;
     // border-top: 1px solid #b7b7b7;
     background: #f2f1f0;
-    & ~ .page>div {
+    & ~ .page {
         padding-bottom: $footer-h;
     }
 }
@@ -90,17 +90,23 @@ body {
     background: $app-bg;
 }
 .wrapper {
-    width: 100vw;
+    width: 100%;
 }
 .noscroll-outer {
+    width: 100%;
+    height: 100%;
+    position: relative;
     overflow: hidden;
 }
 .noscroll-inner {
     position: relative;
-    width: 110%;
+    width: 125%;
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
+    .wrapper {
+        width: 80%;
+    }
 }
 // for Chrome
 .noscroll-inner::-webkit-scrollbar {
