@@ -2,13 +2,14 @@
 	<div class="full-page vc-dialogue">
 		<!-- 顶部信息 -->
 		<div class="dialogue-hd flexbox">
-			<div class="hd-left back-arrow" @touchend="goBack">
+			<!-- <div class="hd-left back-arrow" @touchend="goBack">
 				<span class="back-label">微信</span>
 			</div>
 			<div class="hd-center dialogue-title flex-1">{{friend.name}}</div>
 			<div class="hd-right">
 				<span class="iconfont icon-chat-friends"></span>
-			</div>
+			</div> -->
+			<header-bar></header-bar>
 		</div>
 		<!-- 对话 -->
 		<div class="dialogue-bd noscroll-outer">
@@ -53,6 +54,7 @@
 </template>
 
 <script>
+import HeaderBar from 'components/Header'
 
 export default {
 
@@ -78,12 +80,16 @@ export default {
         },
 	},
 
+	components: {
+		HeaderBar
+	},
+
 	data () {
 		return {
 			friend: {},
 			me: {
 				name: 'Andre Huang',
-                avatar: "./static/profile/user/avatar.jpg"
+                avatar: "./static/profile/user/pic.jpg"
 			},
 			usingVoice: false,
 			typingMsg: '',
@@ -104,6 +110,25 @@ export default {
 		}
 	},
 
+	computed: {
+		hdOption () {
+			return {
+	            type: 3,
+	            title: this.friend.name,
+	            backBtn: {
+	                need: true,
+	                // url: '/chat',
+	                label: '返回'
+	            },
+	            action: {
+	            	type: 2,
+	            	url: '/chat/detail',
+	                icon: 'icon-chat-friends'
+	            }
+	        }
+		}
+	},
+
 	methods: {
 		toggleInputVoice () {
 			this.usingVoice = !this.usingVoice
@@ -119,8 +144,19 @@ export default {
 				type: 1
 			})
 			this.typingMsg = ''
+		}
+		
+	},
+
+	events: {
+		'getChatFriend' (_person) {
+			// console.log('dia', _person)
+			if (util.typeof(_person) === 'object') {
+				this.friend = _person
+	            this.$broadcast('set-header', this.hdOption)
+			}
 		},
-		goBack () {
+		'goback' () {
 			util.delLocal('chatfriend')
 			this.$router.go({
 				path: '/chat'
@@ -128,18 +164,9 @@ export default {
 		}
 	},
 
-	events: {
-		'getChatFriend' (_person) {
-			console.log('dia', _person)
-			if (util.typeof(_person) === 'object') {
-				this.friend = _person
-			}
-		}
-	},
-
 	watch: {
 	    conversation () {
-	    	console.log('change')
+	    	// console.log('change')
 	        document.getElementById('conversation').scrollTop = document.getElementById('conversation').scrollHeight;
 	    }
 	}
@@ -159,9 +186,9 @@ export default {
 		// display: flex
 		height: $header-h
 		// line-height: @height
-		padding: $gap
+		// padding: $gap
 		color: #fff
-	    background: linear-gradient(180deg,#303036,#3c3b40)
+	    // background: linear-gradient(180deg,#303036,#3c3b40)
 		z_index('sn')
 		transform: translateZ(1px)
 	}

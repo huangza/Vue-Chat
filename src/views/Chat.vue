@@ -1,9 +1,13 @@
 <template>
-    <div class="wrapper effect" :class="{'effect--30': fade}">
-        <search-bar></search-bar>
-        <div class="chat-list">
-            <chat-list :initial-list="friends"></chat-list>
-            <span v-show="needed">{{newMsgCount}}</span>
+    <div class="noscroll-outer">
+        <div class="noscroll-inner">
+            <div class="wrapper effect" :class="{'effect--30': fade}">
+                <search-bar></search-bar>
+                <div class="chat-list">
+                    <chat-list :initial-list="friends"></chat-list>
+                    <span v-show="needed">{{newMsgCount}}</span>
+                </div>
+            </div>
         </div>
     </div>
     <router-view keep-alive transition="cover"></router-view>
@@ -78,12 +82,12 @@ export default {
 
     events: {
         'route-pipe' (_fade) {
-            console.log('chat fade')
+            // console.log('chat fade')
             this.fade = _fade
             this.$parent.$emit('route-pipe', _fade)
         },
         'to-dialogue' (index) {
-            console.log('*No: ' + index)
+            // console.log('*No: ' + index)
             var fields = ['_uid', 'name', 'avatar']
             // console.log('*No: ' + index)
             if (util.typeof(index) === 'string') {
@@ -92,14 +96,14 @@ export default {
                         return item
                     }
                 })[0]
-                console.log(res)
+                // console.log(res)
                 var person = {};
                 for(var k in res) {
                     if (res.hasOwnProperty(k) && fields.indexOf(k) > -1) {
                         person[k] = res[k]
                     }
                 }
-                console.log('contact', person)
+                // console.log('contact', person)
                 // console.log('contact', new Date())
                 this.$broadcast('getChatFriend', person)
             }

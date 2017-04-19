@@ -1,11 +1,15 @@
 <template>	
-    <div class="wrapper effect">
-		<div class="user list">
-			<chat-list :initial-type="type" :initial-list="user"></chat-list>
-		</div>
-		<div class="list" >
-			<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
-		</div>
+    <div class="noscroll-outer">
+    	<div class="noscroll-inner">
+    		<div class="wrapper effect">
+				<div class="user list">
+					<chat-list :initial-type="type" :initial-list="user"></chat-list>
+				</div>
+				<div class="list" >
+					<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+				</div>
+		    </div>
+    	</div>
     </div>
 </template>
 
@@ -35,7 +39,7 @@ export default {
 				{
 					_uid: '0000000000000000',
 					name: 'Andre爱喝抹茶拿铁',
-	                avatar: "./static/profile/user/avatar.jpg",
+	                avatar: "./static/profile/user/pic.jpg",
 					vcid: 'A_Dreamliker',
 					avatarRight: false
 				}

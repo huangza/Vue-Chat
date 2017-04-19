@@ -1,24 +1,29 @@
 <template>
     <div class="vc-action">
-        <span
-         class="action-bar_open"
-         @click="toggleList">
-            <i class="iconfont icon-tips-jia"></i>
-        </span>
-        <ul
-         class="action-bar_list p-absolute"
-         :class="tipsClass">
-            <li
-             class="action-bar_item"
-             v-for="a in actions"
-             @touchend="goPage(a.hrefTo)">
-                <span class="nav-links_icon">
-                    <i class="iconfont" :class="a.icon" aria-hidden="true"></i>
-                </span>
-                <p class="nav-links_label" v-text="a.label"></p>
-            </li>
-        </ul>
-        <div class="action-bar_mask" v-show="showList" @click="toggleList"></div>
+        <template v-if="option.type === 1">
+            <span
+             class="action-bar_open"
+             @click="toggleList">
+                <i class="iconfont icon-tips-jia"></i>
+            </span>
+            <ul
+             class="action-bar_list p-absolute"
+             :class="tipsClass">
+                <li
+                 class="action-bar_item"
+                 v-for="a in actions"
+                 @touchend="goPage(a.hrefTo)">
+                    <span class="nav-links_icon">
+                        <i class="iconfont" :class="a.icon" aria-hidden="true"></i>
+                    </span>
+                    <p class="nav-links_label" v-text="a.label"></p>
+                </li>
+            </ul>
+            <div class="action-bar_mask" v-show="showList" @click="toggleList"></div>
+        </template>
+        <template v-if="option.type === 2">
+            <span class="iconfont" :class="option.icon" @touchend="goPage(option.url)"></span>
+        </template>
     </div>
 </template>
 
@@ -29,6 +34,7 @@ export default {
         //     console.log(event.target);
         // });
     },
+    props: ['initialOption'],
     data () {
         return {
             actions: [
@@ -52,6 +58,10 @@ export default {
         }
     },
     computed: {
+        // 为什么不是用computed来设置的话，option.type会是0
+        option () {
+            return this.initialOption
+        },
         tipsClass () {
             return {
                 'tips-open': this.showList,
@@ -79,8 +89,8 @@ export default {
 @import '../assets/css/com/mixin.styl'
 .vc-action
     position: relative
-    right: 21px
-    height: 44px
+    // right: 21px
+    // height: 44px
     .action-bar_open
         display: inline-block
         i {
@@ -92,8 +102,8 @@ export default {
         width: 133px
         padding: 0 15px
         border-radius: 4px
-        top: 50px
-        right: -10px
+        top: 40px
+        right: -8px
         transform-origin: 90% 0
         z_index('p')
         &:before
@@ -107,6 +117,7 @@ export default {
             border-color: transparent transparent #49484b
             border-style: solid
     .action-bar_item
+        line-height: 44px
         text-align: left
         position: relative
         &:not(:last-child):after
@@ -134,8 +145,8 @@ export default {
         position: absolute
         width: 6.4rem
         height: 11.38rem
-        right: -21px
-        top: 44px
+        right: -15px
+        top: 34px
         z_index('m')
 .tips-open
     opacity: 1

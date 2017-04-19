@@ -1,8 +1,12 @@
 <template>
-    <div class="wrapper effect">
-    	<div class="list">
-	    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
-	    </div>
+    <div class="noscroll-outer">
+    	<div class="noscroll-inner">
+    		<div class="wrapper effect">
+		    	<div class="list">
+			    	<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+			    </div>
+		    </div>
+    	</div>
     </div>
 </template>
 
