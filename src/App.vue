@@ -1,7 +1,7 @@
 <template>
     <header class="header t-center">
         <div class="effect" :class="{' effect--50': fade}">
-            <header-bar :initial-option="option"></header-bar>
+            <header-bar></header-bar>
         </div>
     </header>
     <footer class="footer t-center" :class="{'hide': !showFooter}">
@@ -54,20 +54,21 @@ export default {
             user: [{
                 "title": "Andre Huang",
                 "icon": "",
-                "avatar": "./static/profile/user/avatar.jpg",
+                "avatar": "./static/profile/user/pic.jpg",
                 "intro": "",
                 "hrefTo": "/me",
                 "category": "A"
             }],
             option: {
                 type: 1,
-                title: '微信',
+                title: 'Fake Wechat',
                 backBtn: {
                     need: false,
                     url: '',
                     label: '返回'
                 },
                 action: {
+                    type: 1,
                     icon: 'icon-more'
                 }
             },
@@ -94,20 +95,61 @@ export default {
     events: {
         'page' (name) {
             var pageWithNav = ['chat', 'contact', 'discover', 'me']
-            var pageWithSearch = ['chat', 'contact', 'subContact', 'newFriend']
+            var pageOption = {
+                'chat': {
+                    type: 1,
+                    title: 'Fake Wechat',
+                    backBtn: {
+                        need: false
+                    },
+                    action: {
+                        type: 1
+                    }
+                },
+                'contact': {
+                    type: 2,
+                    title: '通讯录',
+                    backBtn: {
+                        need: false
+                    },
+                    action: {
+                        type: 2,
+                        url: '/contact/add-friends',
+                        icon: 'icon-tips-add-friend'
+                    }
+                },
+                'discover': {
+                    type: 3,
+                    title: '发现',
+                    backBtn: {
+                        need: false
+                    },
+                    action: {
+                        type: 0
+                    }
+                },
+                'me': {
+                    type: 4,
+                    title: '我',
+                    backBtn: {
+                        need: false
+                    },
+                    action: {
+                        type: 0
+                    }
+                },
+            }
+            // var pageWithSearch = ['chat', 'contact', 'subContact', 'newFriend']
             if (!name) {
                 return
             }
-            if (pageWithNav.indexOf(name) >= 0) {
-                // console.log('page: ' + new Date())
-                this.showFooter = true
-            } else {
-                this.showFooter = false
+            if (util.typeof(pageOption[name]) === 'object') {
+                this.$broadcast('set-header', pageOption[name])
             }
         },
 
         'route-pipe' (_fade) {
-            console.log('app fade')
+            // console.log('app fade')
             this.fade = _fade
         },
 

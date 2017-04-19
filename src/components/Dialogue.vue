@@ -9,7 +9,7 @@
 			<div class="hd-right">
 				<span class="iconfont icon-chat-friends"></span>
 			</div> -->
-			<header-bar :initial-option="hdOption"></header-bar>
+			<header-bar></header-bar>
 		</div>
 		<!-- 对话 -->
 		<div class="dialogue-bd noscroll-outer">
@@ -89,7 +89,7 @@ export default {
 			friend: {},
 			me: {
 				name: 'Andre Huang',
-                avatar: "./static/profile/user/avatar.jpg"
+                avatar: "./static/profile/user/pic.jpg"
 			},
 			usingVoice: false,
 			typingMsg: '',
@@ -121,6 +121,8 @@ export default {
 	                label: '返回'
 	            },
 	            action: {
+	            	type: 2,
+	            	url: '/chat/detail',
 	                icon: 'icon-chat-friends'
 	            }
 	        }
@@ -151,6 +153,7 @@ export default {
 			// console.log('dia', _person)
 			if (util.typeof(_person) === 'object') {
 				this.friend = _person
+	            this.$broadcast('set-header', this.hdOption)
 			}
 		},
 		'goback' () {

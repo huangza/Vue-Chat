@@ -39,7 +39,7 @@ export default {
 				{
 					_uid: '0000000000000000',
 					name: 'Andre爱喝抹茶拿铁',
-	                avatar: "./static/profile/user/avatar.jpg",
+	                avatar: "./static/profile/user/pic.jpg",
 					vcid: 'A_Dreamliker',
 					avatarRight: false
 				}

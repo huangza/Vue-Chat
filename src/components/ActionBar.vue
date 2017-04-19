@@ -1,24 +1,29 @@
 <template>
     <div class="vc-action">
-        <span
-         class="action-bar_open"
-         @click="toggleList">
-            <i class="iconfont icon-tips-jia"></i>
-        </span>
-        <ul
-         class="action-bar_list p-absolute"
-         :class="tipsClass">
-            <li
-             class="action-bar_item"
-             v-for="a in actions"
-             @touchend="goPage(a.hrefTo)">
-                <span class="nav-links_icon">
-                    <i class="iconfont" :class="a.icon" aria-hidden="true"></i>
-                </span>
-                <p class="nav-links_label" v-text="a.label"></p>
-            </li>
-        </ul>
-        <div class="action-bar_mask" v-show="showList" @click="toggleList"></div>
+        <template v-if="option.type === 1">
+            <span
+             class="action-bar_open"
+             @click="toggleList">
+                <i class="iconfont icon-tips-jia"></i>
+            </span>
+            <ul
+             class="action-bar_list p-absolute"
+             :class="tipsClass">
+                <li
+                 class="action-bar_item"
+                 v-for="a in actions"
+                 @touchend="goPage(a.hrefTo)">
+                    <span class="nav-links_icon">
+                        <i class="iconfont" :class="a.icon" aria-hidden="true"></i>
+                    </span>
+                    <p class="nav-links_label" v-text="a.label"></p>
+                </li>
+            </ul>
+            <div class="action-bar_mask" v-show="showList" @click="toggleList"></div>
+        </template>
+        <template v-if="option.type === 2">
+            <span class="iconfont" :class="option.icon" @touchend="goPage(option.url)"></span>
+        </template>
     </div>
 </template>
 
@@ -29,6 +34,7 @@ export default {
         //     console.log(event.target);
         // });
     },
+    props: ['initialOption'],
     data () {
         return {
             actions: [
@@ -52,6 +58,10 @@ export default {
         }
     },
     computed: {
+        // 为什么不是用computed来设置的话，option.type会是0
+        option () {
+            return this.initialOption
+        },
         tipsClass () {
             return {
                 'tips-open': this.showList,
