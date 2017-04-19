@@ -2,13 +2,14 @@
 	<div class="full-page vc-dialogue">
 		<!-- 顶部信息 -->
 		<div class="dialogue-hd flexbox">
-			<div class="hd-left back-arrow" @touchend="goBack">
+			<!-- <div class="hd-left back-arrow" @touchend="goBack">
 				<span class="back-label">微信</span>
 			</div>
 			<div class="hd-center dialogue-title flex-1">{{friend.name}}</div>
 			<div class="hd-right">
 				<span class="iconfont icon-chat-friends"></span>
-			</div>
+			</div> -->
+			<header-bar :initial-option="hdOption"></header-bar>
 		</div>
 		<!-- 对话 -->
 		<div class="dialogue-bd noscroll-outer">
@@ -53,6 +54,7 @@
 </template>
 
 <script>
+import HeaderBar from 'components/Header'
 
 export default {
 
@@ -76,6 +78,10 @@ export default {
             this.$parent.$emit('route-pipe', false)
             transition.next()
         },
+	},
+
+	components: {
+		HeaderBar
 	},
 
 	data () {
@@ -104,6 +110,23 @@ export default {
 		}
 	},
 
+	computed: {
+		hdOption () {
+			return {
+	            type: 3,
+	            title: this.friend.name,
+	            backBtn: {
+	                need: true,
+	                // url: '/chat',
+	                label: '返回'
+	            },
+	            action: {
+	                icon: 'icon-chat-friends'
+	            }
+	        }
+		}
+	},
+
 	methods: {
 		toggleInputVoice () {
 			this.usingVoice = !this.usingVoice
@@ -119,13 +142,8 @@ export default {
 				type: 1
 			})
 			this.typingMsg = ''
-		},
-		goBack () {
-			util.delLocal('chatfriend')
-			this.$router.go({
-				path: '/chat'
-			})
 		}
+		
 	},
 
 	events: {
@@ -134,6 +152,12 @@ export default {
 			if (util.typeof(_person) === 'object') {
 				this.friend = _person
 			}
+		},
+		'goback' () {
+			util.delLocal('chatfriend')
+			this.$router.go({
+				path: '/chat'
+			})
 		}
 	},
 
@@ -159,9 +183,9 @@ export default {
 		// display: flex
 		height: $header-h
 		// line-height: @height
-		padding: $gap
+		// padding: $gap
 		color: #fff
-	    background: linear-gradient(180deg,#303036,#3c3b40)
+	    // background: linear-gradient(180deg,#303036,#3c3b40)
 		z_index('sn')
 		transform: translateZ(1px)
 	}

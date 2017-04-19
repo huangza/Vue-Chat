@@ -9,8 +9,10 @@
 		</div>
 	</div> -->
 	<div class="vc-header flexbox">
-		<div class="hd-left back-arrow" @touchend="goBack">
-			<span class="back-label">返回</span>
+		<div class="hd-left">
+			<div class="wrapper back-arrow" v-if="option.backBtn.need" @touchend="goBack">
+				<span class="back-label">{{option.backBtn.label}}</span>
+			</div>
 		</div>
 		<div class="hd-center dialogue-title flex-1">
 			{{option.title}}
@@ -34,7 +36,7 @@ export default {
 				count: 0
 			},
 			// option 组件配置
-			// -- type，表示为哪些页面的组件：
+			// |-- type，表示为哪些页面的组件：
 			//    0 - 默认
 			//    1 - 首页
 			//    2 - 通讯录
@@ -42,23 +44,35 @@ export default {
 			//    4 - 聊天详情
 			//    5 - 个人信息
 			//    6 - 朋友圈
-			// option: {
-			// 	type: 1,
-			// 	title: 'Fake Wechat',
-			// 	backBtn: {
-			// 		need: false,
-			// 		url: '',
-			// 		label: '返回'
-			// 	},
-			// 	action: {
-			// 		icon: 'icon-more'
-			// 	}
-			// }
+			// |-- title，表示头部中间的文字
+			// |-- backBtn，左侧后退操作对应的对象
+			// 			|-- need - 是否需要后退按钮
+			// 			|-- url - 跳转操作指向的路径
+			// 			|-- label - 显示文字
+			// |-- action，右侧功能按钮
+			// 			|-- icon - 图标
+			defaultOpt: {
+				type: 0,
+				title: 'Fake Wechat',
+				backBtn: {
+					need: false,
+					url: '',
+					label: '返回'
+				},
+				action: {
+					type: 0,
+					icon: 'icon-more',
+					url: ''
+				}
+			}
 		}
 	},
 	computed: {
 		option () {
-			return util.extend({}, this.initialOption)
+			return util.extend(this.defaultOpt, this.initialOption)
+		},
+		needMsgTip () {
+			return this.option.type === 1 ? true : false
 		}
 	},
 	components: {
@@ -75,7 +89,9 @@ export default {
 	},
 
 	methods: {
-		goBack () {}
+		goBack () {
+			this.$parent.$emit('goback')
+		}
 	}
 }
 </script>
@@ -84,6 +100,7 @@ export default {
 @import "../assets/css/com/mixin.styl"
 @import "../assets/css/com/value.styl"
 .vc-header {
+	width: 100%
 	height: $header-h
 	padding: $gap
 	color: #fff
@@ -130,14 +147,14 @@ export default {
 			content: ' '
 			position: absolute
 			top: 50%
-			left: 8px
+			left: -14px
 			display: inline-block
 			width: 12px
 			height: 12px
 			border-width: 0 0 3px 3px
 			border-color: #fff
 			border-style: solid
-			margin-top: -6px
+			margin-top: -8px
 			background: transparent
 			transform: rotateZ(45deg)
 		}

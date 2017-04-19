@@ -189,6 +189,7 @@
 	}
 
 	// 最基本的 extend 拓展功能
+	// 浅复制，属性为对象的话其指针是相同的
 	// To be improved
 	function _extend(dest, src) {
 		if (this.typeof(dest) !== 'object' && this.typeof(src) !== 'object') {
