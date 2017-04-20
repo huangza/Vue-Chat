@@ -90,7 +90,7 @@ export default {
 .vc-action
     position: relative
     // right: 21px
-    // height: 44px
+    height: 24px
     .action-bar_open
         display: inline-block
         i {

@@ -208,58 +208,6 @@ export default {
 	    background: #f2f1f0
 		z_index('sn')
 	}
-	.hd-left,
-	.hd-center,
-	.hd-right {
-		height: ($header-h - 2 * $gap)
-		line-height: @height
-	}
-	.hd-left {
-		width: 52px
-		padding-left: 2 * $gap
-		text-align: left
-		span {
-			display: inline-block
-			text-align: left
-			vertical-align: middle
-			font-size: 15px
-		}
-	}
-	.hd-center {
-		// flex: 1
-		text-align: center
-	}
-	.hd-right {
-		width: 52px
-		padding-right: ($gap / 2)
-		text-align: right
-		span {
-			font-size: 18px
-			text-align: right
-			vertical-align: middle
-		}
-	}
-	.back-arrow {
-		position: relative
-		&:after {
-			content: ' '
-			position: absolute
-			top: 50%
-			left: 8px
-			display: inline-block
-			width: 12px
-			height: 12px
-			border-width: 0 0 3px 3px
-			border-color: #fff
-			border-style: solid
-			margin-top: -6px
-			background: transparent
-			transform: rotateZ(45deg)
-		}
-	}
-	.dialogue-title {
-		font-size: 18px
-	}
 	.ft-left,
 	.ft-center,
 	.ft-right {

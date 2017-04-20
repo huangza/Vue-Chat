@@ -1,24 +1,19 @@
 <template>
 	<div class="full-page vc-personinfo">
 		<!-- 顶部信息 -->
-		<div class="dialogue-hd flexbox">
-			<div class="hd-left back-arrow" @touchend="goBack">
-				<span class="back-label">返回</span>
-			</div>
-			<div class="hd-center dialogue-title flex-1">详细资料</div>
-			<div class="hd-right">
-				<span class="iconfont icon-more"></span>
-			</div>
+		<div class="personinfo-hd flexbox">
+			<header-bar></header-bar>
 		</div>
 		<!-- 对话 -->
-		<div class="dialogue-bd">
-			<div class="dialogue-container">
+		<div class="personinfo-bd">
+			<div class="personinfo-container">
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import HeaderBar from 'components/Header'
 export default {
 
 	route: {
@@ -42,9 +37,32 @@ export default {
         },
 	},
 
+	components: {
+		HeaderBar
+	},
+
 	data () {
 		return {
 			friend: {}
+		}
+	},
+
+	computed: {
+		hdOption () {
+			return {
+	            type: 7,
+	            title: '详细资料',
+	            backBtn: {
+	                need: true,
+	                // url: '/contact',
+	                label: '返回'
+	            },
+	            action: {
+	            	type: 2,
+	            	// url: '',
+	                icon: 'icon-more'
+	            }
+	        }
 		}
 	},
 
@@ -52,18 +70,25 @@ export default {
 		'getPersonInfo' (_person) {
 			if (util.typeof(_person) === 'object') {
 				this.friend = _person
+	            this.$broadcast('set-header', this.hdOption)
 			}
-		}
-	},
-
-	methods: {
-		goBack () {
+		},
+		'goback' () {
 			util.delLocal('contactfriend')
 			this.$router.go({
 				path: '/contact'
 			})
 		}
-	}
+	},
+
+	// methods: {
+	// 	goBack () {
+	// 		util.delLocal('contactfriend')
+	// 		this.$router.go({
+	// 			path: '/contact'
+	// 		})
+	// 	}
+	// }
 }
 </script>
 
@@ -72,7 +97,7 @@ export default {
 @import '../assets/css/com/value.styl'
 .vc-personinfo {
 	z_index('sc')
-	.dialogue-hd {
+	.personinfo-hd {
 		position: absolute
 		top: 0
 		left: 0
@@ -80,63 +105,15 @@ export default {
 		// display: flex
 		height: $header-h
 		// line-height: @height
-		padding: $gap
+		// padding: $gap
 		color: #fff
 	    background: linear-gradient(180deg,#303036,#3c3b40)
 		z_index('sn')
 	}
-	.dialogue-bd {
+	.personinfo-bd {
 		width: 100%
 		height: 100%
 		padding: $header-h 0 $footer-h 0
-	}
-	.hd-left,
-	.hd-center,
-	.hd-right {
-		height: ($header-h - 2 * $gap)
-		line-height: @height
-	}
-	.hd-left {
-		padding-left: 2 * $gap
-		span {
-			display: inline-block
-			text-align: left
-			vertical-align: middle
-			font-size: 16px
-		}
-	}
-	.hd-center {
-		// flex: 1
-		text-align: center
-	}
-	.hd-right {
-		padding-right: ($gap / 2)
-		span {
-			font-size: 18px
-			text-align: right
-			vertical-align: middle
-		}
-	}
-	.back-arrow {
-		position: relative
-		&:after {
-			content: ' '
-			position: absolute
-			top: 50%
-			left: 8px
-			display: inline-block
-			width: 12px
-			height: 12px
-			border-width: 0 0 3px 3px
-			border-color: #fff
-			border-style: solid
-			margin-top: -6px
-			background: transparent
-			transform: rotateZ(45deg)
-		}
-	}
-	.dialogue-title {
-		font-size: 18px
 	}
 }
 </style>

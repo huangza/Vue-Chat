@@ -14,7 +14,7 @@
 				<span class="back-label">{{option.backBtn.label}}</span>
 			</div>
 		</div>
-		<div class="hd-center dialogue-title flex-1">
+		<div class="hd-center hd-title flex-1">
 			{{option.title}}
 			<span class="new-msg-count" data-role="new-msg-count" v-if="needMsgTip" v-show="msgTip.hasNew">({{msgTip.count}})</span>
 		</div>
@@ -149,7 +149,7 @@ export default {
 		span {
 			font-size: 18px
 			text-align: right
-			vertical-align: middle
+			// vertical-align: middle
 		}
 	}
 	.back-arrow {
@@ -170,7 +170,7 @@ export default {
 			transform: rotateZ(45deg)
 		}
 	}
-	.dialogue-title {
+	.hd-title {
 		font-size: 18px
 	}
 }
