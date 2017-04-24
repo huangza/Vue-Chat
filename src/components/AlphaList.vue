@@ -5,7 +5,7 @@
 				<span>{{index}}</span>
 			</div>
 			<template v-for="subItem in item">
-				<div class="alpha-item" :class="{' alpha-item-arrow': !noArrow}" @click="toPersonInfo(subItem)">
+				<div class="alpha-item" :class="{' alpha-item-arrow': !noArrow && subItem.hrefTo}" @click="toPersonInfo(subItem)">
 					<div class="item-hd" v-if="withIcon">
 						<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
 						<img class="item-img" v-if="subItem.avatar" :src="subItem.avatar">
@@ -61,7 +61,10 @@ export default {
 			let id = subItem._uid
 			var _path = '/contact/personinfo'
 			if (!id) {
-				if (subItem.hrefTo) {
+				if (subItem.hrefTo) { 
+					if (subItem.hrefTo === 'javascript:;') {
+						return
+					} 
 					_path = subItem.hrefTo
 				} else {
 					return

@@ -1,15 +1,25 @@
 <template>
 	<div class="vc-chat-list">
-		<template v-if="isUser">
+		<template v-if="isInfo">
 			<div class="chat-item user-item item-arrow">
 				<a href="javascript:;">
 					<div class="item-hd">
 						<img :src="list[0].avatar" class="chat-avatar" v-if="!list[0].avatarRight">
 					</div>
-					<div class="item-bd">
-						<div class="item-title">{{list[0].name}}</div>
-						<div class="item-txt">微信号:&nbsp;{{list[0].vcid}}</div>
-					</div>
+					<!-- isInfo = 2 表示为好友信息页 -->
+					<template v-if="isInfo === 2">
+						<div class="item-bd item-bd-3">
+							<div class="item-title">{{list[0].remark ? list[0].remark : list[0].name}}</div>
+							<div class="item-txt">微信号:&nbsp;{{list[0].vcid}}</div>
+							<div class="item-txt" v-show="list[0].remark">昵称:&nbsp;{{list[0].name}}</div>
+						</div>
+					</template>
+					<template v-else>
+						<div class="item-bd">
+							<div class="item-title">{{list[0].name}}</div>
+							<div class="item-txt">微信号:&nbsp;{{list[0].vcid}}</div>
+						</div>
+					</template>
 					<div class="item-ft"></div>
 				</a>
 			</div>
@@ -44,7 +54,7 @@ export default {
 	
 	data () {
 		return {
-			isUser: this.initialType ? this.initialType : false,
+			isInfo: this.initialType ? this.initialType : false,
 			// list: this.initialList,
 			test: this.initialList[0]
 		}

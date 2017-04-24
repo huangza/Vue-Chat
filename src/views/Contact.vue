@@ -95,7 +95,7 @@ export default {
             this.$parent.$emit('route-pipe', _fade)
         },
         'to-personinfo' (index) {
-            var fields = ['_uid', 'name', 'vcid', 'region', 'avatar']
+            var fields = ['_uid', 'name', 'vcid', 'region', 'avatar', 'remark']
             // console.log('*No: ' + index)
             if (util.typeof(index) === 'string') {
                 var res = this.friends.filter(function(item){

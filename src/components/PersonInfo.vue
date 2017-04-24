@@ -7,6 +7,18 @@
 		<!-- 对话 -->
 		<div class="personinfo-bd">
 			<div class="personinfo-container">
+				<div class="noscroll-outer">
+			    	<div class="noscroll-inner">
+			    		<div class="wrapper">
+							<div class="user list" v-if="person.length>0">
+								<chat-list :initial-type="type" :initial-list="person"></chat-list>
+							</div>
+							<div class="list" >
+								<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+							</div>
+					    </div>
+			    	</div>
+			    </div>
 			</div>
 		</div>
 	</div>
@@ -14,21 +26,20 @@
 
 <script>
 import HeaderBar from 'components/Header'
+import ChatList from 'components/ChatList'
+import AlphaList from 'components/AlphaList'
 export default {
 
 	route: {
 		activate (transition) {
+			this.person = []
             this.$parent.$emit('route-pipe', true)
-            // this.$parent.$emit('to-personinfo', util.getLocal('chatfriend'))
-            // console.log('person route', new Date())
             transition.next()
-            // console.log('activate: ' + new Date())
         },
         data (transition) {
             setTimeout( () => {
                 transition.next({})
 	            this.$parent.$emit('to-personinfo', util.getLocal('contactfriend'))
-                // console.log('data: ' + new Date())
             } )
         },
 		deactivate (transition) {
@@ -38,12 +49,42 @@ export default {
 	},
 
 	components: {
-		HeaderBar
+		HeaderBar,
+		ChatList,
+		AlphaList
 	},
 
 	data () {
 		return {
-			friend: {}
+			type: 2,
+			person: [],
+			func: {
+				listType: '0-1-2-3',
+				list: [
+					{
+						title: '设置备注和标签',
+						icon: '',
+						avatar: '',
+						intro: '',
+						hrefTo: 'javascript:;',
+						category: '1'
+					},{
+						title: '地区',
+						icon: '',
+						avatar: '',
+						intro: '',
+						hrefTo: 'javascript:;',
+						category: '2'
+					},{
+						title: '更多',
+						icon: '',
+						avatar: '',
+						intro: '',
+						hrefTo: 'javascript:;',
+						category: '2'
+					}
+				]
+			}
 		}
 	},
 
@@ -54,22 +95,22 @@ export default {
 	            title: '详细资料',
 	            backBtn: {
 	                need: true,
-	                // url: '/contact',
 	                label: '返回'
 	            },
 	            action: {
 	            	type: 2,
-	            	// url: '',
 	                icon: 'icon-more'
 	            }
 	        }
-		}
+		},
+
 	},
 
 	events: {
 		'getPersonInfo' (_person) {
 			if (util.typeof(_person) === 'object') {
-				this.friend = _person
+				let temp = util.extend({avatarRight: false}, _person)
+				this.person.push( temp )
 	            this.$broadcast('set-header', this.hdOption)
 			}
 		},
@@ -114,6 +155,17 @@ export default {
 		width: 100%
 		height: 100%
 		padding: $header-h 0 $footer-h 0
+	}
+	.item-bd-3 {
+		.item-title {
+			height: 24px
+			line-height: @height
+		}
+		.item-txt {
+			height: 18px
+			line-height: @height
+			color: #888
+		}
 	}
 }
 </style>

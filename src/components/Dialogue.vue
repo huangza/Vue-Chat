@@ -2,13 +2,6 @@
 	<div class="full-page vc-dialogue">
 		<!-- 顶部信息 -->
 		<div class="dialogue-hd flexbox">
-			<!-- <div class="hd-left back-arrow" @touchend="goBack">
-				<span class="back-label">微信</span>
-			</div>
-			<div class="hd-center dialogue-title flex-1">{{friend.name}}</div>
-			<div class="hd-right">
-				<span class="iconfont icon-chat-friends"></span>
-			</div> -->
 			<header-bar></header-bar>
 		</div>
 		<!-- 对话 -->

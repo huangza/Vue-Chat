@@ -34,7 +34,7 @@ export default {
 
 	data () {
 		return {
-			type: 'user',
+			type: 1,
 			user: [
 				{
 					_uid: '0000000000000000',
