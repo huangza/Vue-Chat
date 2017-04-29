@@ -1,7 +1,7 @@
 <template>
 	<div class="vc-chat-list">
 		<template v-if="isInfo">
-			<div class="chat-item user-item item-arrow">
+			<div class="chat-item user-item" :class="{'  item-arrow': isInfo!==2}" @click="toInfo(list[0])">
 				<a href="javascript:;">
 					<div class="item-hd">
 						<img :src="list[0].avatar" class="chat-avatar" v-if="!list[0].avatarRight">
@@ -61,6 +61,8 @@ export default {
 	},
 
 	methods: {
+		// @：跳转应该移动到页面去
+
 		toDialogue (item) {
 			// console.log(item)
 			// alert(item.name)
@@ -73,6 +75,15 @@ export default {
 			// alert(localStorage['chatfriend'])
 			this.$router.go({
 				path: '/chat/dialogue'
+			})
+		},
+		toInfo (item) {
+			let id = item._uid
+			if (this.isInfo === 2) {
+				return;
+			}
+			this.$router.go({
+				path: '/me/userinfo'
 			})
 		}
 	}

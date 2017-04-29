@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <router-view keep-alive transition="cover"></router-view>
+    <router-view transition="cover"></router-view>
 </template>
 
 <script>
@@ -50,30 +50,26 @@ export default {
 	    		listType: '0-1-2-4-5',
 	    		list: [
 					{
-						title: '新的朋友',
-						icon: ' item-icon-newfriend',
-						avatar: '',
+						content: '新的朋友',
+						avatar: '#item-icon-newfriend',
 						intro: '',
 						hrefTo: '/contact/add-friends',
 						category: 'func'
 					},{
-						title: '群聊',
-						icon: ' item-icon-group',
-						avatar: '',
+						content: '群聊',
+						avatar: '#item-icon-group',
 						intro: '',
 						hrefTo: '/contact/group-chat',
 						category: 'func'
 					},{
-						title: '标签',
-						icon: ' item-icon-tag',
-						avatar: '',
+						content: '标签',
+						avatar: '#item-icon-tag',
 						intro: '',
 						hrefTo: '/contact/tag',
 						category: 'func'
 					},{
-						title: '公众号',
-						icon: ' item-icon-public',
-						avatar: '',
+						content: '公众号',
+						avatar: '#item-icon-public',
 						intro: '',
 						hrefTo: '/contact/public',
 						category: 'func'

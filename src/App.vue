@@ -52,12 +52,17 @@ export default {
     data () {
         return {
             user: [{
-                "title": "Andre Huang",
+                // "content": "Andre Huang",
                 "icon": "",
                 "avatar": "./static/profile/user/pic.jpg",
                 "intro": "",
-                "hrefTo": "/me",
-                "category": "A"
+                // "hrefTo": "/me",
+                "category": "A",
+                "_uid": '0000000000000000',
+                "name": 'Andre爱喝抹茶拿铁',
+                "vcid": 'A_Dreamliker',
+                "gender": 1,
+                "region": '广东 深圳',
             }],
             option: {
                 type: 1,
@@ -75,6 +80,12 @@ export default {
             showFooter: true,
             fade: false
         }
+    },
+
+    computed: {
+        // user () {
+        //     let temp = 
+        // }
     },
 
     methods: {

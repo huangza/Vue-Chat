@@ -7,14 +7,18 @@
 			<template v-for="subItem in item">
 				<div class="alpha-item" :class="{' alpha-item-arrow': !noArrow && subItem.hrefTo}" @click="toPersonInfo(subItem)">
 					<div class="item-hd" v-if="withIcon">
-						<span class="item-icon" v-if="subItem.icon" :class="subItem.icon"></span>
-						<img class="item-img" v-if="subItem.avatar" :src="subItem.avatar">
+						<!-- 图片不是靠右、有图片且是图标 -->
+						<span class="item-icon" v-if="subItem.avatarRight!==true && subItem.avatar && subItem.avatar.indexOf('#') > -1" :class="subItem.avatar.replace('#','')"></span>
+
+						<img class="item-img" v-if="subItem.avatarRight!==true && subItem.avatar && subItem.avatar.indexOf('#') < 0" :src="subItem.avatar">
+						<span class="item-title" v-if="subItem.avatarRight===true || (!subItem.avatar && subItem.title)">{{subItem.title}}</span>
 					</div>
 					<div class="item-bd">
-						<div class="item-title">{{subItem.title || subItem.name}}</div>
+						<div class="item-content">{{subItem.content || subItem.name}}</div>
 					</div>
 					<div class="item-ft">
-						<span>{{subItem.intro}}</span>
+						<img class="item-img" v-if="subItem.avatarRight===true && subItem.avatar && subItem.avatar.indexOf('#')" :src="subItem.avatar">
+						<span v-if="!subItem.avatarRight">{{subItem.intro}}</span>
 					</div>
 				</div>
 			</template>
@@ -157,6 +161,8 @@ $iconHeight = 24px
 	.item-gap
 		height: 20px
 	.item-hd
+		display: flex
+		align-items: center
 		padding-right: $gap
 		line-height: 0
 	.item-bd
@@ -169,7 +175,7 @@ $iconHeight = 24px
 		text-align: right
 		span
 			line-height: $iconHeight
-	.item-title
+	.item-content
 		font-size: 15px
 		color: #000
 	.alpha-item-arrow
@@ -197,8 +203,17 @@ $iconHeight = 24px
 		line-height: @height
 		border-radius: ($iconHeight / 10)
 		// background-size: cover
-	.item-img
+	.item-ft .item-img
 		display: inline-block
+		width: $chatAvatar
+		height: @width
+		border-radius: 5px
+	.item-title
+		display: inline-block
+		height: $iconHeight
+		line-height: @height
+		border-radius: ($iconHeight / 10)
+		padding-right: 32px
 .alpha-list-ava
 	.item-bd
 		height: $contactAvatar
@@ -207,6 +222,10 @@ $iconHeight = 24px
 	.item-icon
 		width: $contactAvatar
 		height: @width
+		line-height: @height
+		border-radius: ($contactAvatar / 10)
+	.item-title
+		height: $contactAvatar
 		line-height: @height
 		border-radius: ($contactAvatar / 10)
 </style>

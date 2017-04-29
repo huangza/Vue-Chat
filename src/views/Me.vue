@@ -11,6 +11,7 @@
 		    </div>
     	</div>
     </div>
+    <router-view transition="cover"></router-view>
 </template>
 
 <script>
@@ -35,63 +36,85 @@ export default {
 	data () {
 		return {
 			type: 1,
-			user: [
-				{
-					_uid: '0000000000000000',
-					name: 'Andre爱喝抹茶拿铁',
-	                avatar: "./static/profile/user/pic.jpg",
-					vcid: 'A_Dreamliker',
-					avatarRight: false
-				}
-			],
+			// user: [
+			// 	{
+			// 		_uid: '0000000000000000',
+			// 		name: 'Andre爱喝抹茶拿铁',
+	  //               avatar: "./static/profile/user/pic.jpg",
+			// 		vcid: 'A_Dreamliker',
+			// 		gender: 1,
+			// 		intro: '',
+			// 		region: '广东 深圳',
+			// 		avatarRight: false
+			// 	}
+			// ],
+			user: this.initialUser,
 			func: {
 				listType: '0-1-2-3',
 				list: [
 					{
-						title: '相册',
-						icon: ' item-icon-friendcircle',
-						avatar: '',
+						content: '相册',
+						avatar: '#item-icon-friendcircle',
 						intro: '',
 						hrefTo: '/me?page=friendcircle',
 						category: '1'
 					},{
-						title: '收藏',
-						icon: ' item-icon-scan',
-						avatar: '',
+						content: '收藏',
+						avatar: '#item-icon-scan',
 						intro: '',
 						hrefTo: '/me?page=scan',
 						category: '1'
 					},{
-						title: '钱包',
-						icon: ' item-icon-shake',
-						avatar: '',
+						content: '钱包',
+						avatar: '#item-icon-shake',
 						intro: '',
 						hrefTo: '/me?page=shake',
 						category: '1'
 					},{
-						title: '卡包',
-						icon: ' item-icon-buy',
-						avatar: '',
+						content: '卡包',
+						avatar: '#item-icon-buy',
 						intro: '',
 						hrefTo: '/me?page=buy',
 						category: '1'
 					},{
-						title: '表情',
-						icon: ' item-icon-game',
-						avatar: '',
+						content: '表情',
+						avatar: '#item-icon-game',
 						intro: '',
 						hrefTo: '/me?page=game',
 						category: '2'
 					},{
-						title: '设置',
-						icon: ' item-icon-program',
-						avatar: '',
+						content: '设置',
+						avatar: '#item-icon-program',
 						intro: '',
 						hrefTo: '/me?page=program',
 						category: '3'
 					}
 				]
 			}
+		}
+	},
+
+	computed: {
+		// user () {
+		// 	let tempName = this.initialUser[0].name;
+		// 	let temp = util.extend({}, this.initialUser[0]);
+		// 	temp.name = undefined;
+		// 	let arr = [];
+		// 	arr.push( util.extend({content: tempName}, temp) );
+		// 	return arr;
+		// }
+	},
+
+	events: {
+		'to-userinfo' () {
+			let tempName = this.user[0].name;
+			let temp = util.extend({}, this.user[0]);
+			temp.name = undefined;
+			// let arr = [];
+			// arr.push( util.extend({content: tempName}, temp) );
+			// return arr;
+			this.$broadcast('getUserInfo', util.extend({content: tempName}, temp));
+			// this.$broadcast('getUserInfo', util.extend({}, this.user[0]));
 		}
 	}
 }

@@ -8,6 +8,7 @@
 		    </div>
     	</div>
     </div>
+    <router-view transition="cover"></router-view>
 </template>
 
 <script>
@@ -34,44 +35,38 @@ export default {
 	    		listType: '0-1-2-3',
 	    		list: [
 					{
-						title: '朋友圈',
-						icon: ' item-icon-friendcircle',
-						avatar: '',
+						content: '朋友圈',
+						avatar: '#item-icon-friendcircle',
 						intro: '',
-						hrefTo: '/discover?page=friendcircle',
+						hrefTo: '/discover/friendcircle',
 						category: '1'
 					},{
-						title: '扫一扫',
-						icon: ' item-icon-scan',
-						avatar: '',
+						content: '扫一扫',
+						avatar: '#item-icon-scan',
 						intro: '',
 						hrefTo: '/discover?page=scan',
 						category: '2'
 					},{
-						title: '摇一摇',
-						icon: ' item-icon-shake',
-						avatar: '',
+						content: '摇一摇',
+						avatar: '#item-icon-shake',
 						intro: '',
 						hrefTo: '/discover?page=shake',
 						category: '2'
 					},{
-						title: '购物',
-						icon: ' item-icon-buy',
-						avatar: '',
+						content: '购物',
+						avatar: '#item-icon-buy',
 						intro: '',
 						hrefTo: '/discover?page=buy',
 						category: '3'
 					},{
-						title: '游戏',
-						icon: ' item-icon-game',
-						avatar: '',
+						content: '游戏',
+						avatar: '#item-icon-game',
 						intro: '',
 						hrefTo: '/discover?page=game',
 						category: '3'
 					},{
-						title: '小程序',
-						icon: ' item-icon-program',
-						avatar: '',
+						content: '小程序',
+						avatar: '#item-icon-program',
 						intro: '',
 						hrefTo: '/discover?page=program',
 						category: '4'

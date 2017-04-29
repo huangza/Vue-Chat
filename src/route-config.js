@@ -8,7 +8,7 @@ export default {
 		component: Chat,
 		subRoutes: {
 			'/dialogue': {
-				component: require('./components/Dialogue')
+				component: require('./views/Dialogue')
 			}
 		}
 	},
@@ -16,15 +16,25 @@ export default {
 		component: Contact,
 		subRoutes: {
 			'/personinfo': {
-				component: require('./components/PersonInfo')
+				component: require('./views/PersonInfo')
 			}
 		}
 	},
 	'/discover': {
-		component: Discover
+		component: Discover,
+		subRoutes: {
+			'/friendcircle': {
+				component: require('./views/FriendCircle')
+			}
+		}
 	},
 	'/me': {
-		component: Me
+		component: Me,
+		subRoutes: {
+			'/userinfo': {
+				component: require('./views/UserInfo')
+			}
+		}
 	},
 	'*': {
 		name: '404',
