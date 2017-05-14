@@ -8,7 +8,7 @@
 		<div class="dialogue-bd noscroll-outer">
 			<div id="conversation" class="dialogue-container noscroll-inner">
 				<div class="wrapper">
-					<template v-for="item in conversation">
+					<template v-for="item in conversation " track-by="$index">
 						<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">
 							<div class="dialogue-img">
 								<img :src="item.from > 0 ? me.avatar : friend.avatar">
@@ -86,20 +86,37 @@ export default {
 			},
 			usingVoice: false,
 			typingMsg: '',
-			conversation: [
-				{
-					content: '晴天 歌词',
-					// 消息来源：1-用户自己；0-好友
-					from: 1,
-					// 消息类型：1-文字；2-表情；3.图片
-					type: 1
-				},
-				{
-					content: '刮风这天我试过握着你手，但偏偏雨渐渐大到我看你不见。',
-					from: 0,
-					type: 1
-				}
-			]
+			conversation: [],
+			specialChat: {
+				count: 0,
+				defAnswer: [
+					{
+						content: '我是Fannie的代言人，有什么事跟我说吧。',
+						from: 0,
+						type: 1
+					},
+					{
+						content: '好的，说完你可以走了。',
+						from: 0,
+						type: 1
+					},
+					{
+						content: '再见',
+						from: 0,
+						type: 1
+					},
+					{
+						content: '你再说什么我也只会回你“哦”',
+						from: 0,
+						type: 1
+					},
+					{
+						content: '哦',
+						from: 0,
+						type: 1
+					}
+				]
+			}
 		}
 	},
 
@@ -131,12 +148,19 @@ export default {
 			this.focused = false
 		},
 		sendMsg () {
+			if (!this.typingMsg) { return; }
 			this.conversation.push({
 				content: this.typingMsg,
 				from: 1,
 				type: 1
 			})
 			this.typingMsg = ''
+			if (this.friend._uid === '0000000000000007') {
+				setTimeout(() => {
+					this.conversation.push(this.specialChat.defAnswer[this.specialChat.count]);
+					this.specialChat.count < 4 && this.specialChat.count++;
+				}, 400);
+			}
 		}
 		
 	},
@@ -147,6 +171,22 @@ export default {
 			if (util.typeof(_person) === 'object') {
 				this.friend = _person
 	            this.$broadcast('set-header', this.hdOption)
+
+	            console.log(this.friend._uid);
+				if (this.friend._uid !== '0000000000000007') {
+					this.conversation.push({
+						content: '晴天 歌词',
+						// 消息来源：1-用户自己；0-好友
+						from: 1,
+						// 消息类型：1-文字；2-表情；3.图片
+						type: 1
+					},
+					{
+						content: '刮风这天我试过握着你手，但偏偏雨渐渐大到我看你不见。',
+						from: 0,
+						type: 1
+					})
+				}
 			}
 		},
 		'goback' () {

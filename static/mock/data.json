@@ -1,6 +1,15 @@
 {
     "chat": [
         {
+            "_uid": "0000000000000007",
+            "name": "Fannie",
+            "avatar": "./static/profile/friends/u_0000000000000007/avatar.jpg",
+            "latestWord": "",
+            "latestTime": "17:57",
+            "newMsg": false,
+            "msgCount": 0
+        },
+        {
             "_uid": "0000000000000015",
             "name": "漩涡鸣人",
             "avatar": "./static/profile/friends/u_0000000000000015/avatar.jpg",
@@ -107,15 +116,15 @@
             "vcid": "vcid2017040717250006",
             "region": ""
         },{
-            "_uid": "0000000000000007",
+            "_uid": "0000000000000023",
             "name": "迪达拉",
             "icon": "",
-            "avatar": "./static/profile/friends/u_0000000000000007/avatar.jpg",
+            "avatar": "./static/profile/friends/u_0000000000000023/avatar.jpg",
             "intro": "",
             "hrefTo": "",
             "category": "D",
             "gender": 1,
-            "vcid": "vcid2017040717250007",
+            "vcid": "vcid2017040717250023",
             "region": ""
         },{
             "_uid": "0000000000000008",
@@ -288,6 +297,18 @@
             "vcid": "vcid2017040717250022",
             "region": "",
             "remark": "骚韦"
+        },{
+            "_uid": "0000000000000007",
+            "name": "Fannie",
+            "icon": "",
+            "avatar": "./static/profile/friends/u_0000000000000007/avatar.jpg",
+            "intro": "饭尼同学",
+            "hrefTo": "",
+            "category": "F",
+            "gender": 0,
+            "vcid": "fannie",
+            "region": "",
+            "remark": "懵猪"
         }
     ]
 }

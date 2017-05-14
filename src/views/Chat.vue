@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <router-view keep-alive transition="cover"></router-view>
+    <router-view transition="cover"></router-view>
 </template>
 
 <script>

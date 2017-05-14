@@ -110,6 +110,16 @@ export default {
 		'getPersonInfo' (_person) {
 			if (util.typeof(_person) === 'object') {
 				let temp = util.extend({avatarRight: false}, _person)
+				if (temp.intro) {
+					this.func.list.push({
+						content: temp.intro,
+						title: '个性签名',
+						avatar: '',
+						intro: '',
+						hrefTo: 'javascript:;',
+						category: '1'
+					})
+				}
 				this.person.push( temp )
 	            this.$broadcast('set-header', this.hdOption)
 			}

@@ -26,7 +26,7 @@
 			    					</div>
 			    					<div class="item-right">
 			    						<div class="item-name">ABC君</div>
-			    						<div class="item-txt">测试<br>第二行<br>Line Three</div>
+			    						<div class="item-txt">测试<br>第二行<br>Line Three<br>有彩蛋~</div>
 			    						<div class="item-img item-img-multi col-3">
 			    							<img :src="cover">
 			    							<img :src="cover">
@@ -51,6 +51,19 @@
 			    						</div>
 			    						<div class="item-ft">
 			    							<div class="item-time">27分钟前</div>
+			    							<div class="item-comment"><img src="../assets/images/comment.png"></div>
+			    						</div>
+			    					</div>
+			    				</div>
+			    				<div class="friendcircle-item">
+			    					<div class="item-left">
+			    						<img :src="special" alt="" class="item-avatar" />
+			    					</div>
+			    					<div class="item-right">
+			    						<div class="item-name">Fannie</div>
+			    						<div class="item-txt">这样的咩~</div>
+			    						<div class="item-ft">
+			    							<div class="item-time">37分钟前</div>
 			    							<div class="item-comment"><img src="../assets/images/comment.png"></div>
 			    						</div>
 			    					</div>
@@ -98,7 +111,7 @@ export default {
 			type: 2,
 			user: this.initialUser,
 			cover: './static/profile/user/pic.jpg',
-			myAlbum: '/me/album?back=discover'
+			special: './static/profile/friends/u_0000000000000007/avatar.jpg'
 		}
 	},
 

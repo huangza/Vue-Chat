@@ -18,7 +18,7 @@
 					</div>
 					<div class="item-ft">
 						<img class="item-img" v-if="subItem.avatarRight===true && subItem.avatar && subItem.avatar.indexOf('#')" :src="subItem.avatar">
-						<span v-if="!subItem.avatarRight">{{subItem.intro}}</span>
+						<span v-if="!subItem.avatarRight && this.withIntro">{{subItem.intro}}</span>
 					</div>
 				</div>
 			</template>
@@ -42,6 +42,9 @@ export default {
 		},
 		withHref () {
 			return this.type.indexOf('3') >= 0;
+		},
+		withIntro () {
+			return this.type.indexOf('6') >= 0;
 		},
 		noArrow () {
 			return this.type.indexOf('4') >= 0 || this.type.indexOf('3') < 0;

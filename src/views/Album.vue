@@ -21,12 +21,20 @@
 			    			</div>
 			    			<div class="album-personintro">有时你不努力一下都不知道什么叫绝望。</div>
 			    			<div class="album-list">
-			    				<div class="album-item">
+			    				<!-- <div class="album-item">
 			    					<div class="item-left">
 			    						<span class="item-time-big">5</span><span>11月</span>
 			    					</div>
 			    					<div class="item-right">
 			    						<div class="item-txt">经过无穷幻变天气 总不分离</div>
+			    					</div>
+			    				</div> -->
+			    				<div class="album-item" v-for="item in list">
+			    					<div class="item-left">
+			    						<span class="item-time-big">{{item.date}}</span><span>{{item.month}}月</span>
+			    					</div>
+			    					<div class="item-right">
+			    						<div class="item-txt">{{item.content}}</div>
 			    					</div>
 			    				</div>
 			    			</div>
@@ -68,10 +76,25 @@ export default {
 	},
 
 	data () {
+		let today = new Date();
+		const theday = new Date('2016-11-05');
+		let past = Math.floor((today.getTime() - theday.getTime()) / 1000 / 60 / 60 / 24);
 		return {
 			type: 2,
 			user: this.initialUser,
-			cover: './static/profile/user/pic.jpg'
+			cover: './static/profile/user/pic.jpg',
+			list: [
+				{
+					date: today.getDate(),
+					month: today.getMonth() + 1,
+					content: past + ' days passed since we first held each other\'s hand.'
+				},
+				{
+					date: 5,
+					month: 11,
+					content: '经过无穷幻变天气 总不分离'
+				}
+			]
 		}
 	},
 
@@ -228,12 +251,12 @@ export default {
 			color: #000;
 			font-size: 14px;
 			line-height: 30px;
-			text-indent: .5em;
+			padding: 0 .5em;
 			margin-bottom: 10px;
 			background: #f3f3f5;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+			// overflow: hidden;
+			// text-overflow: ellipsis;
+			// white-space: nowrap;
 		}
 		.item-img {
 			margin-bottom: 10px;
