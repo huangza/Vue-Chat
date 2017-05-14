@@ -106,7 +106,7 @@ export default {
 			}
 		},
 		'goback' () {
-			let path = '/discover';
+			let path = '/me';
 			const query = this.$route.query;
 			if (query.from) {
 				query.from === 'friendcircle' && (path = '/discover/friendcircle');
