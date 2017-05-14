@@ -33,6 +33,9 @@ export default {
 		subRoutes: {
 			'/userinfo': {
 				component: require('./views/UserInfo')
+			},
+			'/album': {
+				component: require('./views/Album')
 			}
 		}
 	},

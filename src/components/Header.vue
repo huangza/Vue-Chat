@@ -128,7 +128,7 @@ export default {
 		line-height: @height
 	}
 	.hd-left {
-		width: 52px
+		width: 65px
 		padding-left: 2 * $gap
 		text-align: left
 		span {
@@ -143,7 +143,7 @@ export default {
 		text-align: center
 	}
 	.hd-right {
-		width: 52px
+		width: 65px
 		padding-right: ($gap / 2)
 		text-align: right
 		span {

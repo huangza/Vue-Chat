@@ -56,7 +56,7 @@ export default {
 						content: '相册',
 						avatar: '#item-icon-friendcircle',
 						intro: '',
-						hrefTo: '/me?page=friendcircle',
+						hrefTo: '/me/album',
 						category: '1'
 					},{
 						content: '收藏',

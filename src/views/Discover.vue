@@ -8,7 +8,7 @@
 		    </div>
     	</div>
     </div>
-    <router-view transition="cover"></router-view>
+    <router-view transition="cover" initial-user="user"></router-view>
 </template>
 
 <script>
@@ -31,6 +31,7 @@ export default {
 
     data () {
     	return {
+    		user: this.initialUser,
     		func: {
 	    		listType: '0-1-2-3',
 	    		list: [

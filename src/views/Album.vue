@@ -1,12 +1,12 @@
 <template>
-	<div class="full-page vc-friendcircle">
+	<div class="full-page vc-album">
 		<!-- 顶部信息 -->
-		<div class="friendcircle-hd flexbox">
+		<div class="album-hd flexbox">
 			<header-bar></header-bar>
 		</div>
 		<!-- 对话 -->
-		<div class="friendcircle-bd">
-			<div class="friendcircle-container">
+		<div class="album-bd">
+			<div class="album-container">
 				<div class="noscroll-outer">
 			    	<div class="noscroll-inner">
 			    		<div class="wrapper">
@@ -16,43 +16,17 @@
 			    				</div>
 			    				<div class="album-foot">
 			    					<span class="album-name">Andre</span>
-			    					<img :src="cover" class="album-avatar" v-link="{ path: '/me/album', query: { from: 'friendcircle'}}" />
+			    					<img :src="cover" class="album-avatar" />
 			    				</div>
 			    			</div>
-			    			<div class="friendcircle-list">
-			    				<div class="friendcircle-item">
+			    			<div class="album-personintro">有时你不努力一下都不知道什么叫绝望。</div>
+			    			<div class="album-list">
+			    				<div class="album-item">
 			    					<div class="item-left">
-			    						<img :src="cover" alt="" class="item-avatar" />
+			    						<span class="item-time-big">5</span><span>11月</span>
 			    					</div>
 			    					<div class="item-right">
-			    						<div class="item-name">ABC君</div>
-			    						<div class="item-txt">测试<br>第二行<br>Line Three</div>
-			    						<div class="item-img item-img-multi col-3">
-			    							<img :src="cover">
-			    							<img :src="cover">
-			    							<img :src="cover">
-			    							<img :src="cover">
-			    						</div>
-			    						<div class="item-ft">
-			    							<div class="item-time">7分钟前</div>
-			    							<div class="item-comment"><img src="../assets/images/comment.png"></div>
-			    						</div>
-			    					</div>
-			    				</div>
-			    				<div class="friendcircle-item">
-			    					<div class="item-left">
-			    						<img :src="cover" alt="" class="item-avatar" />
-			    					</div>
-			    					<div class="item-right">
-			    						<div class="item-name">XYZ君</div>
-			    						<div class="item-txt">测试<br>第二行<br>Line Three</div>
-			    						<div class="item-img item-img-single">
-			    							<img :src="cover">
-			    						</div>
-			    						<div class="item-ft">
-			    							<div class="item-time">27分钟前</div>
-			    							<div class="item-comment"><img src="../assets/images/comment.png"></div>
-			    						</div>
+			    						<div class="item-txt">经过无穷幻变天气 总不分离</div>
 			    					</div>
 			    				</div>
 			    			</div>
@@ -97,19 +71,23 @@ export default {
 		return {
 			type: 2,
 			user: this.initialUser,
-			cover: './static/profile/user/pic.jpg',
-			myAlbum: '/me/album?back=discover'
+			cover: './static/profile/user/pic.jpg'
 		}
 	},
 
 	computed: {
 		hdOption () {
+			const query = this.$route.query;
+			let label = '我';
+			if (query.from) {
+				query.from === 'friendcircle' && (label = '朋友圈');
+			}
 			return {
 	            type: 8,
-	            title: '朋友圈',
+	            title: '相册',
 	            backBtn: {
 	                need: true,
-	                label: '发现'
+	                label: label
 	            },
 	            action: {
 	            	type: 0
@@ -128,8 +106,13 @@ export default {
 			}
 		},
 		'goback' () {
+			let path = '/discover';
+			const query = this.$route.query;
+			if (query.from) {
+				query.from === 'friendcircle' && (path = '/discover/friendcircle');
+			}
 			this.$router.go({
-				path: '/discover'
+				path: path
 			})
 		}
 	},
@@ -148,9 +131,9 @@ export default {
 <style lang="stylus">
 @import '../assets/css/com/mixin.styl'
 @import '../assets/css/com/value.styl'
-.vc-friendcircle {
+.vc-album {
 	z_index('sc')
-	.friendcircle-hd {
+	.album-hd {
 		position: absolute
 		top: 0
 		left: 0
@@ -160,12 +143,12 @@ export default {
 	    background: linear-gradient(180deg,#303036,#3c3b40)
 		z_index('sn')
 	}
-	.friendcircle-bd {
+	.album-bd {
 		width: 100%
 		height: 100%
 		// padding-top: $header-h
 	}
-	.friendcircle-container {
+	.album-container {
 		width: 100%;
 		height: 100%;
 		background: #fff;
@@ -174,11 +157,11 @@ export default {
 		width: 100%;
 		text-align: center;
 		position: relative;
-		margin-bottom: 49px;
+		margin-bottom: 30px;
 	}
 	.album-cover-pic {
 		width: 100%;
-		height: 4.63768rem;
+		height: 5.62705rem;
 		position: relative;
 		text-align: left;
 		overflow: hidden;
@@ -208,27 +191,25 @@ export default {
 		border: 1px solid #d4d4d4;
 		background-color: #fff;
 	}
-	.friendcircle-item {
+	.album-personintro {    
+		margin-bottom: 32px;
+		text-align: right;
+		font-size: 12px;
+		color: #6f6d68;
+	}
+	.album-item {
 		display: flex;
-		padding: 0 20px 15px;
-		&+.friendcircle-item {
-			position: relative;
-			padding-top: 15px;
-			&:before {
-				content: " ";
-				position: absolute;
-				left: 0;
-				top: 0;
-				right: 0;
-				height: 1px;
-				border-top: 1px solid #dfdfdd;
-				color: #dfdfdd;
-				trans-origin(0 0);
-				trans-scaleY(0.5);
-			}
-		}
+		padding: 0 9px 15px;
 		.item-left {
-			padding-right: 10px;
+			width: 55px;
+			text-align: left;
+			font-size: 12px;
+			line-height: 1;
+		}
+		.item-time-big {
+			font-size: 23px;
+			vertical-align: sub;
+			font-weight: bold;
 		}
 		.item-right {
 			flex: 1;
@@ -243,10 +224,16 @@ export default {
 			line-height: 20px;
 		}
 		.item-txt {
+			width: 4.68406rem;
 			color: #000;
 			font-size: 14px;
-			line-height: 18.3px;
+			line-height: 30px;
+			text-indent: .5em;
 			margin-bottom: 10px;
+			background: #f3f3f5;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 		.item-img {
 			margin-bottom: 10px;
