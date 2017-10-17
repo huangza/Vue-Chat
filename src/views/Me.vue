@@ -6,7 +6,7 @@
 					<chat-list :initial-type="type" :initial-list="user"></chat-list>
 				</div>
 				<div class="list" >
-					<alpha-list :initial-type="func.listType" :initial-list="func.list"></alpha-list>
+					<alpha-list :initial-type="func.type" :initial-list="func.list" :handle-click="toPage"></alpha-list>
 				</div>
 		    </div>
     	</div>
@@ -17,15 +17,47 @@
 <script>
 import ChatList from 'components/ChatList'
 import AlphaList from 'components/AlphaList'
+
+import {header} from 'vx/actions'
+import {meFuncs} from 'vx/getters'
+
 export default {
 
 	props: ['initialUser'],
 
+    vuex: {
+        actions: {
+            updateHeader: header
+        },
+        getters: {
+        	func: meFuncs
+        }
+    },
+
     route: {
         activate (transition) {
-            this.$dispatch('page', 'me')
+            // this.$dispatch('page', 'me')
+            // console.log('me activate')
+            transition.next()
+        },
+        data (transition) {
+        	// console.log('me data')
+	    	this.updateHeader({
+	    		type: 4,
+		        title: '我',
+		        backBtn: {
+		            need: false
+		        },
+		        action: {
+		            type: 0
+		        }
+	    	})
             transition.next()
         }
+    },
+
+    ready() {
+    	// console.log('me ready')
     },
 
 	components: {
@@ -49,52 +81,10 @@ export default {
 			// 	}
 			// ],
 			user: this.initialUser,
-			func: {
-				listType: '0-1-2-3',
-				list: [
-					{
-						content: '相册',
-						avatar: '#item-icon-friendcircle',
-						intro: '',
-						hrefTo: '/me/album',
-						category: '1'
-					},{
-						content: '收藏',
-						avatar: '#item-icon-scan',
-						intro: '',
-						hrefTo: '/me?page=scan',
-						category: '1'
-					},{
-						content: '钱包',
-						avatar: '#item-icon-shake',
-						intro: '',
-						hrefTo: '/me?page=shake',
-						category: '1'
-					},{
-						content: '卡包',
-						avatar: '#item-icon-buy',
-						intro: '',
-						hrefTo: '/me?page=buy',
-						category: '1'
-					},{
-						content: '表情',
-						avatar: '#item-icon-game',
-						intro: '',
-						hrefTo: '/me?page=game',
-						category: '2'
-					},{
-						content: '设置',
-						avatar: '#item-icon-program',
-						intro: '',
-						hrefTo: '/me?page=program',
-						category: '3'
-					}
-				]
-			}
 		}
 	},
 
-	computed: {
+	// computed: {
 		// user () {
 		// 	let tempName = this.initialUser[0].name;
 		// 	let temp = util.extend({}, this.initialUser[0]);
@@ -103,7 +93,7 @@ export default {
 		// 	arr.push( util.extend({content: tempName}, temp) );
 		// 	return arr;
 		// }
-	},
+	// },
 
 	events: {
 		'to-userinfo' () {
@@ -115,6 +105,25 @@ export default {
 			// return arr;
 			this.$broadcast('getUserInfo', util.extend({content: tempName}, temp));
 			// this.$broadcast('getUserInfo', util.extend({}, this.user[0]));
+		}
+	},
+
+	methods: {
+		toPage(item) {
+			let _path = '/404'
+
+            if (item.hrefTo) { 
+                if (item.hrefTo === 'javascript:;') {
+                    return
+                } 
+                _path = item.hrefTo
+            } else {
+                return
+            }
+
+            this.$router.go({
+                path: _path
+            })
 		}
 	}
 }

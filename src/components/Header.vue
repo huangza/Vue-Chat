@@ -11,12 +11,13 @@
 	<div class="vc-header flexbox">
 		<div class="hd-left">
 			<div class="wrapper back-arrow" v-if="option.backBtn.need" @touchend="goBack">
+			<!-- <div class="wrapper back-arrow" v-if="option.backBtn.need" v-link="option.backBtn.url"> -->
 				<span class="back-label">{{option.backBtn.label}}</span>
 			</div>
 		</div>
 		<div class="hd-center hd-title flex-1">
 			{{option.title}}
-			<span class="new-msg-count" data-role="new-msg-count" v-if="needMsgTip" v-show="msgTip.hasNew">({{msgTip.count}})</span>
+			<span class="new-msg-count" data-role="new-msg-count" v-if="needMsgTip" v-show="newMsgCount > 0">({{newMsgCount}})</span>
 		</div>
 		<div class="hd-right">
 			<!-- <span class="iconfont icon-more"></span> -->
@@ -27,14 +28,19 @@
 
 <script>
 import ActionBar from './ActionBar'
+// import store from 'vx/store'
+import {getHdOption, getNewMsgCount} from 'vx/getters'
 export default {
 	// props: ['initialOption'],
+	vuex: {
+		getters: {
+			option: getHdOption,
+			newMsgCount: getNewMsgCount
+		}
+	},
 	data () {
+		// console.log(this.$store.state.header.backBtn)
 		return {
-			msgTip: {
-				hasNew: false,
-				count: 0
-			},
 			// option 组件配置
 			// |-- type，表示为哪些页面的组件：
 			//    0 - 默认
@@ -55,27 +61,35 @@ export default {
 			// 			|-- type - 类型
 			// 			|-- url - 跳转路径
 			// 			|-- icon - 图标
-			defaultOpt: {
-				type: 0,
-				title: 'Fake Wechat',
-				backBtn: {
-					need: false,
-					url: '',
-					label: '返回'
-				},
-				action: {
-					type: 0,
-					icon: 'icon-more',
-					url: ''
-				}
-			},
+
+			// defaultOpt: {
+			// 	type: 0,
+			// 	title: 'Fake Wechat',
+			// 	backBtn: {
+			// 		need: false,
+			// 		url: '',
+			// 		label: '返回'
+			// 	},
+			// 	action: {
+			// 		type: 0,
+			// 		icon: 'icon-more',
+			// 		url: ''
+			// 	}
+			// },
 			initialOption: null
 		}
 	},
 	computed: {
-		option () {
-			return util.extend(this.defaultOpt, this.initialOption)
-		},
+		// option () {
+		// 	console.log(getHdOption)
+		// 	return util.extend(this.defaultOpt, this.initialOption)
+		// },
+		// msgTip () {
+		// 	return {
+		// 		hasNew: false,
+		// 		count: newMsgCount
+		// 	}
+		// },
 		needMsgTip () {
 			return this.option.type === 1 ? true : false
 		}
@@ -85,23 +99,25 @@ export default {
 	},
 
 	events: {
-		'set-header' (opt) {
-			if (util.typeof(opt) === 'object') {
-				this.initialOption = opt
-				// console.log(opt)
-			}
-		},
-		'set-msg-count' (count) {
-			if (util.typeof(count) === 'number') {
-				this.msgTip.hasNew = count > 0 ? true : false;
-				this.msgTip.count = count
-			}
-		}
+		// 'set-header' (opt) {
+		// 	if (util.typeof(opt) === 'object') {
+		// 		this.initialOption = opt
+		// 		// console.log(opt)
+		// 	}
+		// },
+		// 'set-msg-count' (count) {
+		// 	if (util.typeof(count) === 'number') {
+		// 		this.msgTip.hasNew = count > 0 ? true : false;
+		// 		this.msgTip.count = count
+		// 	}
+		// }
 	},
 
 	methods: {
 		goBack () {
-			this.$parent.$emit('goback')
+			// this.$parent.$emit('goback')
+			// console.log(this);
+			window.history.go(-1)
 		}
 	}
 }

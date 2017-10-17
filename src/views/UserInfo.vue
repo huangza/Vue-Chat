@@ -25,6 +25,10 @@
 import HeaderBar from 'components/Header'
 import ChatList from 'components/ChatList'
 import AlphaList from 'components/AlphaList'
+
+import {header} from 'vx/actions'
+import {getUser} from 'vx/getters'
+
 export default {
 
 	route: {
@@ -35,14 +39,38 @@ export default {
         },
         data (transition) {
             setTimeout( () => {
+
+				this.updateHeader({
+					type: 7,
+		            title: '个人信息',
+		            backBtn: {
+		                need: true,
+		                label: '我'
+		            },
+		            action: {
+		            	type: 0
+		            }
+				})
                 transition.next({})
-	            this.$parent.$emit('to-userinfo')
+	            // this.$parent.$emit('to-userinfo')
             } )
         },
 		deactivate (transition) {
             this.$parent.$emit('route-pipe', false)
             transition.next()
         },
+	},
+
+	vuex: {
+		actions: {
+			updateHeader: header
+		},
+		getters: {
+			user: getUser
+		}
+	},
+
+	ready() {
 	},
 
 	components: {
@@ -54,32 +82,23 @@ export default {
 	data () {
 		return {
 			type: 2,
-			user: [{}]
+			// user: [{}]
 		}
 	},
 
 	computed: {
-		hdOption () {
-			return {
-	            type: 7,
-	            title: '个人信息',
-	            backBtn: {
-	                need: true,
-	                label: '我'
-	            },
-	            action: {
-	            	type: 0
-	            }
-	        }
+		person () {
+			let p = []
+			p.push(this.user)
+			return p
 		},
-
 		func () {
 			return {
 				listType: '0-1-2-3',
 				list: [
 					{
 						content: '',
-						avatar: this.user[0].avatar,
+						avatar: this.person[0].avatar,
 						title: '头像',
 						intro: '',
 						hrefTo: 'javascript:;',
@@ -89,14 +108,14 @@ export default {
 						content: '',
 						title: '名字',
 						avatar: '',
-						intro: this.user[0].name,
+						intro: this.person[0].name,
 						hrefTo: 'javascript:;',
 						category: '1'
 					},{
 						content: '',
 						title: '微信号',
 						avatar: '',
-						intro: this.user[0].vcid,
+						intro: this.person[0].vcid,
 						hrefTo: '',
 						category: '1'
 					},{
@@ -117,27 +136,27 @@ export default {
 						content: '',
 						title: '性别',
 						avatar: '',
-						intro: this.user[0].gender === 1 ? '男' : '女',
+						intro: this.person[0].gender === 1 ? '男' : '女',
 						hrefTo: 'javascript:;',
 						category: '2'
 					},{
 						content: '',
 						title: '地区',
 						avatar: '',
-						intro: this.user[0].region,
+						intro: this.person[0].region,
 						hrefTo: 'javascript:;',
 						category: '2'
 					},{
 						content: '',
 						title: '个性签名',
 						avatar: '',
-						intro: this.user[0].intro,
+						intro: this.person[0].intro,
 						hrefTo: 'javascript:;',
 						category: '2'
 					}
 				]
 			}
-		}
+		},
 	},
 
 	events: {
@@ -149,7 +168,7 @@ export default {
 				this.user = [];
 				this.user.push(_person)
 				// console.log(this.user)
-	            this.$broadcast('set-header', this.hdOption)
+	            // this.$broadcast('set-header', this.hdOption)
 			}
 		},
 		'goback' () {

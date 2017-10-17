@@ -8,11 +8,23 @@
 		<div class="dialogue-bd noscroll-outer">
 			<div id="conversation" class="dialogue-container noscroll-inner">
 				<div class="wrapper">
+
 					<template v-for="item in conversation">
 						<div class="dialogue-item" :class="{'dialogue-left': item.from === 0, 'dialogue-right': item.from === 1}">
 							<div class="dialogue-img">
-								<img :src="item.from > 0 ? me.avatar : friend.avatar">
+								<img 
+									v-if="item.from > 0" 
+									:src="me ? me.avatar : ''"
+									v-link="{path: 'personinfo', query: {id: me ? me._uid : ''}, append: true}"
+								>
+								<img 
+									v-else 
+									:src="friend && friend.avatar"
+									v-link="{path: 'personinfo', query: {id: friend ? friend._uid : ''}, append: true}"
+								>
+								<!-- <img :src="item.from > 0 ? me.avatar : friend.avatar"> -->
 							</div>
+
 							<div class="dialogue-msg">
 								<div class="dialogue-msg-txt" v-if="item.type === 1">{{item.content}}</div>
 								<img :src="item.content" class="dialogue-msg-emoji" v-if="item.type === 2">
@@ -43,17 +55,32 @@
 				<span class="dialogue-btn dialogue-emoji iconfont icon-dialogue-jia"></span>
 			</div>
 		</div>
+
+	    <router-view transition="cover"></router-view>
 	</div>
 </template>
 
 <script>
 import HeaderBar from 'components/Header'
+import {header, headerTitle, updateChattingFriend} from 'vx/actions'
+import {chattingFriend} from 'vx/getters'
 
 export default {
 
 	ready () {
-		// console.log(this.$router)
+		console.log(this.chattingFriend)
 	},
+
+    vuex: {
+        actions: {
+            updateHeader: header,
+            updateHeaderTitle: headerTitle,
+            updateChattingFriend
+        },
+        getters: {
+        	chattingFriend
+        }
+    },
 
 	route: {
 		activate (transition) {
@@ -61,11 +88,40 @@ export default {
             // this.$dispatch('dialogue-get-friend')
             transition.next()
         },
-        data (transition) {
-            setTimeout( () => {
-                transition.next({})
-	            this.$parent.$emit('to-dialogue', util.getLocal('chatfriend'))
-            } )
+        data({
+        	to: {query: {id}},
+        	next
+        }) {
+    		let me = this
+        	return Promise.all([
+        		(new Promise(resolve => {
+        			me.updateHeader({
+		        		type: 3,
+			            title: '聊天窗口',
+			            backBtn: {
+			                need: true,
+			                label: '返回'
+			            },
+			            action: {
+			            	type: 2,
+			            	url: '/chat/detail',
+			                icon: 'icon-chat-friends'
+			            }
+		        	})
+		        	resolve()
+        		})),
+	        	(new Promise(resolve => {
+	        		console.log('data', id)
+	        		me.updateChattingFriend(id)
+	        		console.log('data', me.$store.state.chat.current)
+	        		resolve()
+	        	}))
+        	]).then(() => {
+        		return new Promise((resolve) => {
+        			me.friend && me.updateHeaderTitle(me.friend.name)
+        			resolve()
+        		})
+        	}).then(() => ({}))
         },
 		deactivate (transition) {
             this.$parent.$emit('route-pipe', false)
@@ -79,7 +135,6 @@ export default {
 
 	data () {
 		return {
-			friend: {},
 			me: {
 				name: 'Andre Huang',
                 avatar: "./static/profile/user/pic.jpg"
@@ -104,22 +159,26 @@ export default {
 	},
 
 	computed: {
-		hdOption () {
-			return {
-	            type: 3,
-	            title: this.friend.name,
-	            backBtn: {
-	                need: true,
-	                // url: '/chat',
-	                label: '返回'
-	            },
-	            action: {
-	            	type: 2,
-	            	url: '/chat/detail',
-	                icon: 'icon-chat-friends'
-	            }
-	        }
+		friend() {
+			console.log('computed', this.chattingFriend)
+			return this.chattingFriend
 		}
+	// 	hdOption () {
+	// 		return {
+	//             type: 3,
+	//             title: this.friend.name,
+	//             backBtn: {
+	//                 need: true,
+	//                 // url: '/chat',
+	//                 label: '返回'
+	//             },
+	//             action: {
+	//             	type: 2,
+	//             	url: '/chat/detail',
+	//                 icon: 'icon-chat-friends'
+	//             }
+	//         }
+	// 	}
 	},
 
 	methods: {
@@ -146,7 +205,7 @@ export default {
 			// console.log('dia', _person)
 			if (util.typeof(_person) === 'object') {
 				this.friend = _person
-	            this.$broadcast('set-header', this.hdOption)
+	            // this.$broadcast('set-header', this.hdOption)
 			}
 		},
 		'goback' () {
@@ -170,6 +229,9 @@ export default {
 @import '../assets/css/com/mixin.styl'
 @import '../assets/css/com/value.styl'
 .vc-dialogue {
+	img {
+	    background: #cdcdcd;
+	}
 	z_index('sc')
 	.dialogue-hd {
 		position: absolute

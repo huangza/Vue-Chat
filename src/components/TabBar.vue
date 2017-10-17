@@ -16,39 +16,45 @@
 </template>
 
 <script>
+import {getNav} from 'vx/getters'
 export default {
     created () {
     },
-    data () {
-        return {
-            tab: [
-                {
-                    label: "首页",
-                    icon: " icon-wechat",
-                    link: "/chat",
-                    isOn: true
-                },
-                {
-                    label: "通讯录",
-                    icon: " icon-contact",
-                    link: "/contact",
-                    isOn: false
-                },
-                {
-                    label: "发现",
-                    icon: " icon-find",
-                    link: "/discover",
-                    isOn: false
-                },
-                {
-                    label: "我",
-                    icon: " icon-me",
-                    link: "/me",
-                    isOn: false
-                }
-            ]
-        };
+    vuex: {
+        getters: {
+            tab: getNav
+        }
     },
+    // data () {
+    //     return {
+    //         tab: [
+    //             {
+    //                 label: "首页",
+    //                 icon: " icon-wechat",
+    //                 link: "/chat",
+    //                 isOn: true
+    //             },
+    //             {
+    //                 label: "通讯录",
+    //                 icon: " icon-contact",
+    //                 link: "/contact",
+    //                 isOn: false
+    //             },
+    //             {
+    //                 label: "发现",
+    //                 icon: " icon-find",
+    //                 link: "/discover",
+    //                 isOn: false
+    //             },
+    //             {
+    //                 label: "我",
+    //                 icon: " icon-me",
+    //                 link: "/me",
+    //                 isOn: false
+    //             }
+    //         ]
+    //     };
+    // },
     methods: {
     }
 }

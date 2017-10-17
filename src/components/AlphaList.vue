@@ -5,7 +5,7 @@
 				<span>{{index}}</span>
 			</div>
 			<template v-for="subItem in item">
-				<div class="alpha-item" :class="{' alpha-item-arrow': !noArrow && subItem.hrefTo}" @click="toPersonInfo(subItem)">
+				<div class="alpha-item" :class="{' alpha-item-arrow': !noArrow && subItem.hrefTo}" @click="handleClick(subItem)">
 					<div class="item-hd" v-if="withIcon">
 						<!-- 图片不是靠右、有图片且是图标 -->
 						<span class="item-icon" v-if="subItem.avatarRight!==true && subItem.avatar && subItem.avatar.indexOf('#') > -1" :class="subItem.avatar.replace('#','')"></span>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-	props: ['initialType', 'initialList'],
+	props: ['initialType', 'initialList', 'handleClick'],
 
 	computed:{
 		noTag () {

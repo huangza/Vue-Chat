@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routerMap from './route-config'
+import filters from './filters'
 import App from './App'
 import VueResouce from 'vue-resource'
 import zepto from 'webpack-zepto'
 import fastclick from 'fastclick'
+// import store from 'vx/store'
 require('assets/js/util.js')
 
 // 安装模块
@@ -18,7 +20,8 @@ const router = new VueRouter({
 })
 
 // 使用路由表
-router.map(routerMap)
+// router.map(routerMap)
+routerMap(router)
 
 // 使用 fastclick 插件
 fastclick.attach(document.body)
@@ -30,26 +33,20 @@ const app = Vue.extend(App)
 router.start(app, 'app')
 
 // 重定向
-router.redirect({
-    '/': '/chat'
-})
+// router.redirect({
+//     '/': '/chat'
+// })
+// router.afterEach(function({ from, to }) {
+//     let fromPath = from.path || '/'
+//     let toPath = to.path
+//     let toPath_end = toPath.lastIndexOf('/')
+//     let backPath = toPath.slice(0, toPath_end)
+//     store.dispatch('BACK_PAGE', backPath)
+// 	// console.log(store)
+// })
 
 // 过滤器
-Vue
-.filter('msgFormat', (val, limit) => {
-	if (!val) {
-		return
-	}
-	if (util.typeof(limit) !== 'number') {
-		limit = 99
-	}
-	if (val > limit) {
-		val = limit + '+'
-	} else if (val === 0) {
-		val = ''
-	}
-	return val
-})
+filters(Vue)
 
 // 指令
 Vue
@@ -64,3 +61,4 @@ Vue
 window.router = router
 window.Vue = Vue
 window.$ = zepto
+window.log = console.log.bind(console)

@@ -26,7 +26,7 @@
 		</template>
 		<template v-else>
 			<div class="chat-item" v-for="item in list" :class="{' brd-bottom': $index < list.length-1}">
-				<a href="javascript:;" @touchend="toDialogue(item)">
+				<a href="javascript:;" @click="handleClick(item)">
 					<div class="item-hd" :class="{' chat-badge': item.newMsg}">
 						<img :src="item.avatar" class="chat-avatar">
 						<span class="item-badge" :class="{' item-badge-dot': item.msgCount === 0}" v-if="item.newMsg">{{item.msgCount | msgFormat}}</span>
@@ -44,7 +44,11 @@
 
 <script>
 export default {
-	props: ['initialType', "initialList"],
+	ready() {
+		// console.log(this.handleClick)
+	},
+
+	props: ['initialType', "initialList", 'handleClick'],
 
 	computed: {
 		list () {
@@ -63,18 +67,17 @@ export default {
 	methods: {
 		// @：跳转应该移动到页面去
 
+		// 20171014 UPDATE: 移到了页面
 		toDialogue (item) {
-			// console.log(item)
-			// alert(item.name)
-			// this.target = $index
-			// this.$parent.$emit('to-dialogue', index)
 			let id = item._uid
-			// alert(1)
 			util.setLocal('chatfriend', id)
-			// localStorage['chatfriend'] = id
-			// alert(localStorage['chatfriend'])
+			
 			this.$router.go({
-				path: '/chat/dialogue'
+				path: '/chat/dialogue',
+				// name: 'dialogue',
+				params: {
+					id
+				}
 			})
 		},
 		toInfo (item) {

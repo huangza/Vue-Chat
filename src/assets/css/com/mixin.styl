@@ -52,6 +52,26 @@ trans-origin(exp) {
 	transform-origin: exp
 }
 
+// 伸缩盒
+alpha-flex-box() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: webkit-flex;
+	display: flex;
+}
+alpha-flex() {
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+alpha-flex-vertical() {
+	-moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+}
+
 // placeholder-color(clr)
 // 	&::-webkit-input-placeholder
 // 		color: clr

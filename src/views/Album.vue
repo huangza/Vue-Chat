@@ -16,7 +16,10 @@
 			    				</div>
 			    				<div class="album-foot">
 			    					<span class="album-name">Andre</span>
-			    					<img :src="cover" class="album-avatar" />
+			    					<img class="album-avatar"
+			    						:src="cover"
+			    						v-link="{path: 'personinfo', query: {id: user._uid}, append: true}"
+			    					/>
 			    				</div>
 			    			</div>
 			    			<div class="album-personintro">有时你不努力一下都不知道什么叫绝望。</div>
@@ -35,24 +38,50 @@
 			    </div>
 			</div>
 		</div>
+
+	    <router-view transition="cover"></router-view>
 	</div>
 </template>
 
 <script>
 import HeaderBar from 'components/Header'
+import {header} from 'vx/actions'
+import {getUser} from 'vx/getters'
 export default {
 
-	props: ['initialUser'],
+    vuex: {
+        actions: {
+            updateHeader: header
+        },
+        getters: {
+        	user: getUser
+        }
+    },
 
 	route: {
 		activate (transition) {
 			// this.person = []
             this.$parent.$emit('route-pipe', true)
-            this.$broadcast('set-header', this.hdOption)
             transition.next()
         },
         data (transition) {
             setTimeout( () => {
+            	const {query} = transition.to;
+				let label = '我';
+				query.from === 'friendcircle' && (label = '朋友圈')
+
+				this.updateHeader({
+		            type: 8,
+		            title: '相册',
+		            backBtn: {
+		                need: true,
+		                label: label
+		            },
+		            action: {
+		            	type: 0
+		            }
+		        })
+
                 transition.next({})
 	            // this.$parent.$emit('to-userinfo')
             } )
@@ -70,41 +99,41 @@ export default {
 	data () {
 		return {
 			type: 2,
-			user: this.initialUser,
+			// user: this.initialUser,
 			cover: './static/profile/user/pic.jpg'
 		}
 	},
 
-	computed: {
-		hdOption () {
-			const query = this.$route.query;
-			let label = '我';
-			if (query.from) {
-				query.from === 'friendcircle' && (label = '朋友圈');
-			}
-			return {
-	            type: 8,
-	            title: '相册',
-	            backBtn: {
-	                need: true,
-	                label: label
-	            },
-	            action: {
-	            	type: 0
-	            }
-	        }
-		}
-	},
+	// computed: {
+	// 	hdOption () {
+	// 		const query = this.$route.query;
+	// 		let label = '我';
+	// 		if (query.from) {
+	// 			query.from === 'friendcircle' && (label = '朋友圈');
+	// 		}
+	// 		return {
+	//             type: 8,
+	//             title: '相册',
+	//             backBtn: {
+	//                 need: true,
+	//                 label: label
+	//             },
+	//             action: {
+	//             	type: 0
+	//             }
+	//         }
+	// 	}
+	// },
 
 	events: {
-		'getUserInfo' (_person) {
-			if (util.typeof(_person) === 'object') {
-				this.user = [];
-				this.user.push(_person)
-				// console.log(this.user)
-	            this.$broadcast('set-header', this.hdOption)
-			}
-		},
+		// 'getUserInfo' (_person) {
+		// 	if (util.typeof(_person) === 'object') {
+		// 		this.user = [];
+		// 		this.user.push(_person)
+		// 		// console.log(this.user)
+	 //            this.$broadcast('set-header', this.hdOption)
+		// 	}
+		// },
 		'goback' () {
 			let path = '/me';
 			const query = this.$route.query;
