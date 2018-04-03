@@ -36,6 +36,7 @@ router.redirect({
 
 // 过滤器
 Vue
+// 未读信息的数量提示
 .filter('msgFormat', (val, limit) => {
 	if (!val) {
 		return

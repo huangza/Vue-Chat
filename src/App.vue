@@ -94,6 +94,7 @@ export default {
 
     events: {
         'page' (name) {
+            console.log('app.vue - page: ' + name)
             var pageWithNav = ['chat', 'contact', 'discover', 'me']
             var pageOption = {
                 'chat': {
